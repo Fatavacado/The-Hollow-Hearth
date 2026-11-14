@@ -17,6 +17,8 @@ func _ready() -> void:
 	if not size.is_empty():
 		var parts := size.split("x")
 		get_window().content_scale_size = Vector2i(int(parts[0]), int(parts[1]))
+	# Scenarios travel, and travel autosaves: never touch the player's real save.
+	SaveService.save_path = "user://capture_save.json"
 	main = MAIN_SCENE.instantiate()
 	add_child(main)
 	var scenario := _arg("--scenario=", "benchmark")
@@ -27,6 +29,7 @@ func _ready() -> void:
 	else:
 		push_error("unknown scenario " + scenario)
 	print("shots written to ", _out)
+	SaveService.delete_save()
 	get_tree().quit()
 
 
