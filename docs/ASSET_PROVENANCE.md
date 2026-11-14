@@ -15,6 +15,8 @@ Every asset in the repository is listed here **before** it is committed. Columns
 | Forest props (oaks, pine, bush, rock, stump) and tavern exterior | `assets/art/props/{oak_tree_a,oak_tree_b,pine_tree,bush,rock,stump,tavern_exterior}.png` | `tools/art/gen_world.py` | Original | Project-owned | Yes | benchmark |
 | Tavern interior tiles | `assets/art/tiles/tavern_tiles.png` | `tools/art/gen_tavern.py` | Original | Project-owned | Yes | benchmark |
 | Tavern furniture (hearth, fire, cauldron, counter, table, stool, barrel, crate, shelf, window, notice board, signs, pantry chest, rug, plant, wall lantern) | `assets/art/props/*.png` (remaining files) | `tools/art/gen_tavern.py` | Original | Project-owned | Yes | benchmark |
+| Item icons (5 ingredients, 3 dishes, coin, satchel) | `assets/art/items/*.png` | `tools/art/gen_items.py` | Original | Project-owned | Yes | placeholder |
+| Gather-node sprites, full + picked (glowcap, moonberry, fernleaf, sweetroot, honeycomb) | `assets/art/nodes/*.png` | `tools/art/gen_items.py` | Original | Project-owned | Yes | placeholder |
 | Benchmark screenshots | `docs/benchmark/*.png` | Captured from the game by `tests/visual/capture_benchmark.tscn` | Original | Project-owned | Yes | documentation |
 
 ## Generated-asset policy
