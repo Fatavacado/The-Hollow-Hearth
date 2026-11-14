@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="GuestData" format=3]
+
+[ext_resource type="Script" path="res://scripts/data/guest_data.gd" id="1_guest"]
+[ext_resource type="Texture2D" path="res://assets/art/characters/ghost.png" id="2_sheet"]
+
+[resource]
+script = ExtResource("1_guest")
+id = &"lantern_ghost"
+display_name = "Lantern Ghost"
+sprite_sheet = ExtResource("2_sheet")
+sheet_columns = 2
+sheet_rows = 1
+floats = true
+walk_speed = 55.0
+favorite_dishes = Array[StringName]([&"glowcap_soup", &"hearthroot_stew"])
+tip = 4
+patience_seconds = 100.0
+eat_seconds = 2.5
+arrival_line = "A lantern ghost drifts in, humming softly."
+favorite_line = "\"Oooh... warm all the way through!\""
+thanks_line = "\"Thank you kindly, keeper.\""
+leave_line = "The lantern ghost fades away, a little wistful."

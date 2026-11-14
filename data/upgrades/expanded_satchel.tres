@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="UpgradeData" format=3]
+
+[ext_resource type="Script" path="res://scripts/data/upgrade_data.gd" id="1_upgrade"]
+[ext_resource type="Texture2D" path="res://assets/art/items/satchel.png" id="2_icon"]
+
+[resource]
+script = ExtResource("1_upgrade")
+id = &"expanded_satchel"
+display_name = "Expanded Satchel"
+description = "A roomier satchel with sturdy stitching. Carry 8 more ingredients on every trip."
+icon = ExtResource("2_icon")
+cost = 60
+satchel_bonus = 8

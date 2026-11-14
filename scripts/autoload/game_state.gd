@@ -5,6 +5,9 @@ extends Node
 
 ## Emitted when something (a door, a menu) asks to move the player to another world.
 signal travel_requested(world_id: StringName, spawn_id: StringName)
+signal coins_changed(coins: int)
+signal tavern_open_changed(is_open: bool)
+signal upgrades_changed
 
 const BASE_SATCHEL_CAPACITY := 10
 
@@ -19,6 +22,13 @@ var pantry := Inventory.new(Inventory.UNLIMITED)
 var counter := Inventory.new(Inventory.UNLIMITED)
 ## Gather-node runtime state by node id; see Gathering for the format.
 var gather_nodes: Dictionary = {}
+var coins := 0
+## Upgrade id -> true for every upgrade bought.
+var owned_upgrades: Dictionary = {}
+## Guests only arrive while open. Never saved as open: a loaded game starts closed.
+var tavern_open := false
+## Session totals, used for feedback and economy consistency checks.
+var stats := _fresh_stats()
 
 
 func _process(delta: float) -> void:
@@ -34,6 +44,12 @@ func new_game() -> void:
 	pantry.load_counts({})
 	counter.load_counts({})
 	gather_nodes.clear()
+	coins = 0
+	owned_upgrades.clear()
+	stats = _fresh_stats()
+	set_tavern_open(false)
+	coins_changed.emit(coins)
+	upgrades_changed.emit()
 
 
 func end_session() -> void:
@@ -69,3 +85,59 @@ func cooking_sources() -> Array:
 
 func cook(recipe: RecipeData) -> bool:
 	return Cooking.cook(recipe, cooking_sources(), counter)
+
+
+func earn(amount: int) -> bool:
+	if amount <= 0:
+		return false
+	coins += amount
+	stats["coins_earned"] += amount
+	coins_changed.emit(coins)
+	return true
+
+
+func spend(amount: int) -> bool:
+	if amount <= 0 or amount > coins:
+		return false
+	coins -= amount
+	stats["coins_spent"] += amount
+	coins_changed.emit(coins)
+	return true
+
+
+func owns_upgrade(id: StringName) -> bool:
+	return owned_upgrades.has(id)
+
+
+## Charges the cost and applies the upgrade. Never charges twice or goes below zero.
+func buy_upgrade(upgrade: UpgradeData) -> bool:
+	if upgrade == null or owns_upgrade(upgrade.id) or not spend(upgrade.cost):
+		return false
+	owned_upgrades[upgrade.id] = true
+	satchel.set_capacity(satchel_capacity())
+	upgrades_changed.emit()
+	return true
+
+
+func satchel_capacity() -> int:
+	var capacity := BASE_SATCHEL_CAPACITY
+	for id: StringName in owned_upgrades:
+		var upgrade := GameDB.upgrade(id)
+		if upgrade != null:
+			capacity += upgrade.satchel_bonus
+	return capacity
+
+
+func set_tavern_open(is_open: bool) -> void:
+	if tavern_open == is_open:
+		return
+	tavern_open = is_open
+	tavern_open_changed.emit(is_open)
+
+
+func record_served() -> void:
+	stats["dishes_served"] += 1
+
+
+func _fresh_stats() -> Dictionary:
+	return {"coins_earned": 0, "coins_spent": 0, "dishes_served": 0}

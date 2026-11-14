@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="GuestData" format=3]
+
+[ext_resource type="Script" path="res://scripts/data/guest_data.gd" id="1_guest"]
+[ext_resource type="Texture2D" path="res://assets/art/characters/vampire.png" id="2_sheet"]
+
+[resource]
+script = ExtResource("1_guest")
+id = &"velvet_vampire"
+display_name = "Velvet Vampire"
+sprite_sheet = ExtResource("2_sheet")
+sheet_columns = 5
+sheet_rows = 4
+floats = false
+walk_speed = 70.0
+favorite_dishes = Array[StringName]([&"moonberry_tart", &"hearthroot_stew"])
+tip = 6
+patience_seconds = 80.0
+eat_seconds = 2.5
+arrival_line = "A velvet vampire bows politely at the door."
+favorite_line = "\"Exquisite. My compliments to the cook.\""
+thanks_line = "\"Most kind. A pleasant evening to you.\""
+leave_line = "The vampire sighs and slips back into the night."
