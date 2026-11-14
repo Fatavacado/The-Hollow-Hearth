@@ -40,6 +40,22 @@ Autoloads (in load order)
   (pantry first) and puts one dish in `GameState.counter`. Stopping early consumes nothing.
 - The tavern `Counter` renders the dishes waiting in `GameState.counter`.
 
+### Tavern service and economy
+- `OpenSign` toggles `GameState.tavern_open`. `TavernService` (tavern scene) spawns a `Guest` only
+  while open, when a `Seat` is free and `Orders.orderable()` is non-empty: dishes on the counter or
+  cookable from the pantry/satchel after reserving ingredients for orders already placed. First
+  arrival 3 s after opening, then every 9–14 s; at most 3 guests (one per seat).
+- Archetypes alternate (`Orders.choose_archetype`); orders lean 3:1 towards favourites
+  (`Orders.pick`). `GuestData` holds look, favourites, tip, patience (80–100 s) and lines.
+- `Guest` state machine: ARRIVING (walks the seat's `approach` path) → WAITING (order bubble,
+  patience bar; serve by interacting) → EATING → pays `Orders.payment()` (price + tip for a
+  favourite) → LEAVING. Impatient guests leave politely without paying; nothing else is lost.
+- Closing stops arrivals; seated guests can still be served. Walking out of the tavern closes it
+  and the guests go home (guests are never saved).
+- `GameState.earn/spend` keep `coins == coins_earned - coins_spent` and never go negative.
+  `buy_upgrade` charges once and re-derives satchel capacity from owned upgrades.
+  The notice board (`UpgradeBoard` → `UpgradePanel`) sells the Expanded Satchel (60 coins, +8).
+
 ### Worlds
 - `World` (`scenes/world/world.gd`) parses `data/maps/<name>.txt` (one char = one 32×32 cell) with
   `MapGrid`, lets the subclass paint terrain, then merges blocked cells into a few collision boxes
@@ -78,10 +94,10 @@ Autoloads (in load order)
 | `scenes/` | `.tscn` + co-located scene scripts (`main/`, `player/`, `props/`, `world/`, later `ui/`) |
 | `scripts/autoload/` | autoload singletons |
 | `scripts/world/` | scene-independent map logic: `MapGrid`, `DualGrid`, `CollisionRects` |
-| `scripts/data/` | Resource class definitions (`ItemData`, `RecipeData`; guests and upgrades follow) |
-| `scripts/systems/` | scene-independent rules and models (`Inventory`, `InventoryTransactions`, `Gathering`, `Cooking`) |
+| `scripts/data/` | Resource class definitions (`ItemData`, `RecipeData`, `GuestData`, `UpgradeData`) |
+| `scripts/systems/` | scene-independent rules and models (`Inventory`, `InventoryTransactions`, `Gathering`, `Cooking`, `Orders`) |
 | `data/maps/` | ASCII level layouts with a legend header |
-| `data/items/`, `data/recipes/` | `ItemData` (ingredients and dishes) and `RecipeData` definitions |
+| `data/items/`, `data/recipes/`, `data/guests/`, `data/upgrades/` | definitions (`.tres`) |
 | `assets/` | art, fonts, audio — every file logged in [ASSET_PROVENANCE.md](ASSET_PROVENANCE.md) |
 | `tests/` | runner, framework, `unit/`, `integration/` |
 | `tools/` | validation script; `tools/art/` placeholder asset generators (`python tools/art/build_all.py`) |
@@ -125,4 +141,9 @@ Reversible choices made where the design docs were silent.
 | Pantry | unlimited, deposit-all only | frees the satchel for the next trip; cooking reads it directly | storage upgrades (post-slice) |
 | Cooking interaction | auto-filling 1.4–2.0 s cook; optional "stir" taps speed it up | tactile and legible without a mandatory minigame (GDD §5) | playtest feedback |
 | When ingredients are consumed | on completion, atomically | cancelling or interruptions can never lose items | — |
-| Dish storage | serving counter (`GameState.counter`), unlimited | cooking before or during service both work | service tuning in M4 |
+| Dish storage | serving counter (`GameState.counter`), unlimited | cooking before or during service both work | playtest feedback |
+| What guests may order | only dishes on the counter or cookable now (minus reserved) | no impossible orders; missing ingredients never surprise the player | more recipes / guests |
+| Closing behaviour | no new arrivals; seated guests stay and can be served; leaving closes and sends guests home | predictable, no endless queue (TAVERN_MANAGEMENT.md) | playtest feedback |
+| Patience | 80–100 s, leave politely, no penalty beyond the missed sale | forgiving pacing (GAMEPLAY_LOOP.md) | playtest feedback |
+| Prices / tip / upgrade | soup 10, tart 14, stew 24; tips 4–6 on favourites; satchel 60 coins (+8) | upgrade affordable after ~4–5 served dishes, i.e. within a 10–15 min session | M5 playtest numbers |
+| Guest variety | alternate archetypes (random first) | with two archetypes, random streaks hid one of them | more archetypes |

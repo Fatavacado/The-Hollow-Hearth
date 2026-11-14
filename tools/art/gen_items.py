@@ -279,6 +279,46 @@ def honey_node(full: bool) -> Image.Image:
     return img
 
 
+# ------------------------------------------------------------------ guest UI (world-space)
+def order_bubble() -> Image.Image:
+    img = new(24, 26)
+    body = new(24, 26)
+    for y in range(1, 21):
+        for x in range(1, 23):
+            corner = (x < 3 or x > 20) and (y < 3 or y > 18)
+            if not corner:
+                body.putpixel((x, y), C("c4"))
+    for i in range(4):  # tail
+        rect(body, 10 - i // 2, 21 + i, 13 - i, 21 + i, C("c4"))
+    rect(body, 1, 18, 22, 20, C("c2"))
+    img.alpha_composite(outline(body, C("w1")))
+    return img
+
+
+def emote_heart() -> Image.Image:
+    img = new(11, 10)
+    for x, y in ((2, 1), (3, 1), (6, 1), (7, 1)):
+        put(img, x, y, C("r3"))
+    rect(img, 1, 2, 8, 4, C("r3"))
+    rect(img, 2, 5, 7, 5, C("r3"))
+    rect(img, 3, 6, 6, 6, C("r3"))
+    rect(img, 4, 7, 5, 7, C("r3"))
+    put(img, 2, 2, C("r4"))
+    put(img, 3, 2, C("c4"))
+    return outline(img, C("r0"))
+
+
+def emote_sad() -> Image.Image:
+    img = new(9, 11)
+    for y in range(1, 9):
+        half = 0 if y < 3 else (1 if y < 5 else 2)
+        if y >= 7:
+            half = 1
+        rect(img, 4 - half, y, 4 + half, y, C("b3"))
+    put(img, 3, 5, C("b5"))
+    return outline(img, C("b1"))
+
+
 ICONS = {
     "glowcap": icon_glowcap, "moonberry": icon_moonberry, "fernleaf": icon_fernleaf,
     "sweetroot": icon_sweetroot, "honeycomb": icon_honeycomb,
@@ -307,7 +347,11 @@ def main() -> None:
             save(img, f"nodes/{name}_{'full' if full else 'empty'}.png")
             node_sheet.alpha_composite(img, (i * 52, row * 36))
     preview(node_sheet, scratch / "gather_nodes.png", scale=4)
-    print("wrote", len(ICONS), "icons and", len(NODES) * 2, "node sprites")
+    ui = {"ui/order_bubble.png": order_bubble(), "ui/emote_heart.png": emote_heart(),
+          "ui/emote_sad.png": emote_sad()}
+    for rel, img in ui.items():
+        save(img, rel)
+    print("wrote", len(ICONS), "icons,", len(NODES) * 2, "node sprites and", len(ui), "guest UI sprites")
 
 
 if __name__ == "__main__":

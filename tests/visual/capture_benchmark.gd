@@ -104,6 +104,42 @@ func _scenario_cooking() -> void:
 	await _shot("m3_04_dishes_on_counter")
 
 
+func _scenario_service() -> void:
+	await get_tree().create_timer(2.5).timeout
+	GameState.counter.add(&"glowcap_soup", 2)
+	GameState.counter.add(&"moonberry_tart", 2)
+	var service: TavernService = main.current_world.get_node("Service")
+	service.first_arrival_delay = 0.5
+	service.arrival_interval = Vector2(1.2, 1.2)
+	service.rng.seed = 3
+	var sign: Node2D = main.current_world.get_node("Actors/OpenSign")
+	await _face(sign)
+	main.player.try_interact()
+	await get_tree().create_timer(0.4).timeout
+	await _shot("m4_01_opened")
+	await get_tree().create_timer(6.0).timeout
+	await _shot("m4_02_guests_seated_with_orders")
+	var waiting := service.guests().filter(func(g: Guest) -> bool: return g.is_waiting())
+	if not waiting.is_empty():
+		var guest: Guest = waiting[0]
+		main.player.global_position = guest.global_position + Vector2(0, 16)
+		main.player.facing = Vector2.UP
+		await get_tree().create_timer(0.3).timeout
+		await _shot("m4_03_serve_prompt")
+		main.player.try_interact()
+		await get_tree().create_timer(guest.data.eat_seconds + 0.3).timeout
+		await _shot("m4_04_paid_coins_and_thanks")
+	GameState.set_tavern_open(false)
+	GameState.earn(60)
+	await _face(main.current_world.get_node("UpgradeBoard"))
+	main.player.try_interact()
+	await get_tree().create_timer(0.3).timeout
+	await _shot("m4_05_upgrade_board")
+	main.upgrade_panel.buy(&"expanded_satchel")
+	await get_tree().create_timer(0.3).timeout
+	await _shot("m4_06_upgrade_bought")
+
+
 func _gather_node_at(cell: Vector2i) -> GatherNode:
 	var wanted := StringName("forest:%d,%d" % [cell.x, cell.y])
 	for node in main.current_world.find_children("*", "", true, false):

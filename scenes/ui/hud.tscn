@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" path="res://scenes/ui/hud.gd" id="1_hud"]
 [ext_resource type="Texture2D" path="res://assets/art/items/satchel.png" id="2_satchel"]
+[ext_resource type="Texture2D" path="res://assets/art/items/coin.png" id="3_coin"]
 
 [node name="HUD" type="CanvasLayer"]
 layer = 10
@@ -18,6 +19,17 @@ mouse_filter = 2
 layout_mode = 2
 theme_override_constants/separation = 3
 
+[node name="CoinIcon" type="TextureRect" parent="Status/Row"]
+layout_mode = 2
+texture = ExtResource("3_coin")
+stretch_mode = 3
+
+[node name="CoinsLabel" type="Label" parent="Status/Row"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+text = "0"
+
 [node name="SatchelIcon" type="TextureRect" parent="Status/Row"]
 layout_mode = 2
 texture = ExtResource("2_satchel")
@@ -27,6 +39,24 @@ stretch_mode = 3
 unique_name_in_owner = true
 layout_mode = 2
 text = "0/10"
+
+[node name="TavernStatus" type="PanelContainer" parent="."]
+unique_name_in_owner = true
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -26.0
+offset_top = 6.0
+offset_right = 26.0
+offset_bottom = 22.0
+grow_horizontal = 2
+mouse_filter = 2
+
+[node name="TavernStatusLabel" type="Label" parent="TavernStatus"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "CLOSED"
+horizontal_alignment = 1
 
 [node name="PromptPanel" type="PanelContainer" parent="."]
 unique_name_in_owner = true

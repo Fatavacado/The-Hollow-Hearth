@@ -17,6 +17,7 @@ var _banner_tween: Tween
 
 @onready var hud: HUD = $HUD
 @onready var cooking_panel: CookingPanel = %CookingPanel
+@onready var upgrade_panel: UpgradePanel = %UpgradePanel
 @onready var _world_slot: Node2D = $WorldSlot
 @onready var _fade: ColorRect = %Fade
 @onready var _banner: Label = %Banner
@@ -26,6 +27,7 @@ func _ready() -> void:
 	GameState.travel_requested.connect(_on_travel_requested)
 	Feedback.panel_requested.connect(_on_panel_requested)
 	cooking_panel.closed.connect(_on_panel_closed)
+	upgrade_panel.closed.connect(_on_panel_closed)
 	start_new_game()
 
 
@@ -36,6 +38,9 @@ func _on_panel_requested(panel_id: StringName) -> void:
 		&"cooking":
 			player.input_enabled = false
 			cooking_panel.open()
+		&"upgrades":
+			player.input_enabled = false
+			upgrade_panel.open()
 
 
 func _on_panel_closed() -> void:
@@ -57,6 +62,9 @@ func _on_travel_requested(world_id: StringName, spawn_id: StringName) -> void:
 		return
 	_traveling = true
 	player.input_enabled = false
+	if world_id != &"tavern" and GameState.tavern_open:
+		# Guests only exist while the keeper is home: heading out closes up, no penalty.
+		GameState.set_tavern_open(false)
 	await _tween_fade(1.0)
 	_enter_world(world_id, spawn_id)
 	await _tween_fade(0.0)

@@ -11,16 +11,22 @@
 [ext_resource type="Texture2D" path="res://assets/art/props/stool.png" id="9_stool"]
 [ext_resource type="Texture2D" path="res://assets/art/props/barrel.png" id="10_barrel"]
 [ext_resource type="Texture2D" path="res://assets/art/props/crate.png" id="11_crate"]
-[ext_resource type="Texture2D" path="res://assets/art/props/sign_closed.png" id="12_sign"]
+[ext_resource type="PackedScene" path="res://scenes/world/tavern/open_sign.tscn" id="12_sign"]
 [ext_resource type="Texture2D" path="res://assets/art/props/plant.png" id="13_plant"]
 [ext_resource type="Texture2D" path="res://assets/art/props/rug.png" id="14_rug"]
 [ext_resource type="Texture2D" path="res://assets/art/props/shelf.png" id="15_shelf"]
 [ext_resource type="Texture2D" path="res://assets/art/props/window.png" id="16_window"]
 [ext_resource type="Texture2D" path="res://assets/art/props/notice_board.png" id="17_board"]
 [ext_resource type="Texture2D" path="res://assets/art/props/wall_lantern.png" id="18_lantern"]
+[ext_resource type="Script" path="res://scenes/world/tavern/seat.gd" id="19_seat"]
+[ext_resource type="Script" path="res://scenes/world/tavern/tavern_service.gd" id="20_service"]
+[ext_resource type="Script" path="res://scenes/world/tavern/upgrade_board.gd" id="21_board"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_exit"]
 size = Vector2(64, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_board"]
+size = Vector2(44, 14)
 
 [sub_resource type="Gradient" id="Gradient_light"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
@@ -163,11 +169,8 @@ texture = ExtResource("9_stool")
 foot_row = 18
 blocker_size = Vector2(12, 6)
 
-[node name="OpenSign" parent="Actors" instance=ExtResource("2_prop")]
+[node name="OpenSign" parent="Actors" instance=ExtResource("12_sign")]
 position = Vector2(232, 318)
-texture = ExtResource("12_sign")
-foot_row = 39
-blocker_size = Vector2(34, 6)
 
 [node name="Barrel" parent="Actors" instance=ExtResource("2_prop")]
 position = Vector2(602, 128)
@@ -192,6 +195,34 @@ position = Vector2(604, 318)
 texture = ExtResource("13_plant")
 foot_row = 30
 blocker_size = Vector2(14, 6)
+
+[node name="Seats" type="Node2D" parent="."]
+
+[node name="SeatA" type="Marker2D" parent="Seats"]
+position = Vector2(322, 219)
+script = ExtResource("19_seat")
+approach = PackedVector2Array(320, 300, 320, 240)
+
+[node name="SeatB" type="Marker2D" parent="Seats"]
+position = Vector2(558, 219)
+script = ExtResource("19_seat")
+approach = PackedVector2Array(320, 300, 360, 262, 558, 262)
+facing = Vector2(-1, 0)
+
+[node name="SeatC" type="Marker2D" parent="Seats"]
+position = Vector2(402, 295)
+script = ExtResource("19_seat")
+approach = PackedVector2Array(320, 304, 372, 312)
+
+[node name="Service" type="Node" parent="."]
+script = ExtResource("20_service")
+
+[node name="UpgradeBoard" type="Area2D" parent="."]
+position = Vector2(416, 104)
+script = ExtResource("21_board")
+
+[node name="Shape" type="CollisionShape2D" parent="UpgradeBoard"]
+shape = SubResource("RectangleShape2D_board")
 
 [node name="StartSpawn" type="Marker2D" parent="."]
 position = Vector2(248, 160)

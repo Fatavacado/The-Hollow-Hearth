@@ -8,6 +8,9 @@ const MAX_TOASTS := 4
 var player: Player
 
 @onready var _satchel_label: Label = %SatchelLabel
+@onready var _coins_label: Label = %CoinsLabel
+@onready var _status_panel: PanelContainer = %TavernStatus
+@onready var _status_label: Label = %TavernStatusLabel
 @onready var _prompt_panel: PanelContainer = %PromptPanel
 @onready var _prompt_label: Label = %PromptLabel
 @onready var _toasts: VBoxContainer = %Toasts
@@ -19,12 +22,30 @@ func _ready() -> void:
 	GameState.satchel.changed.connect(_on_inventory_changed)
 	GameState.pantry.changed.connect(_on_inventory_changed)
 	Feedback.toast_requested.connect(_show_toast)
+	GameState.coins_changed.connect(_on_coins_changed)
+	GameState.tavern_open_changed.connect(_on_tavern_open_changed)
 	_inventory_panel.hide()
 	_prompt_panel.hide()
 	_on_inventory_changed()
+	_on_coins_changed(GameState.coins)
+	_on_tavern_open_changed(GameState.tavern_open)
+
+
+func tavern_status_text() -> String:
+	return _status_label.text
+
+
+func _on_coins_changed(coins: int) -> void:
+	_coins_label.text = str(coins)
+
+
+func _on_tavern_open_changed(is_open: bool) -> void:
+	_status_label.text = "OPEN" if is_open else "CLOSED"
+	_status_label.theme_type_variation = &"GoodLabel" if is_open else &"MutedLabel"
 
 
 func _process(_delta: float) -> void:
+	_status_panel.visible = GameState.location == &"tavern"
 	var target: Interactable = null
 	if player != null and is_instance_valid(player):
 		target = player.target

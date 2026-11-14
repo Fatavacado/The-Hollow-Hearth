@@ -3,6 +3,7 @@
 [ext_resource type="Script" path="res://scenes/main/main.gd" id="1_main"]
 [ext_resource type="PackedScene" path="res://scenes/ui/hud.tscn" id="2_hud"]
 [ext_resource type="PackedScene" path="res://scenes/ui/cooking_panel.tscn" id="3_cooking"]
+[ext_resource type="PackedScene" path="res://scenes/ui/upgrade_panel.tscn" id="4_upgrades"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_main")
@@ -15,6 +16,9 @@ script = ExtResource("1_main")
 layer = 20
 
 [node name="CookingPanel" parent="Panels" instance=ExtResource("3_cooking")]
+unique_name_in_owner = true
+
+[node name="UpgradePanel" parent="Panels" instance=ExtResource("4_upgrades")]
 unique_name_in_owner = true
 
 [node name="BannerLayer" type="CanvasLayer" parent="."]
