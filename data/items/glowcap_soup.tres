@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="ItemData" format=3]
+
+[ext_resource type="Script" path="res://scripts/data/item_data.gd" id="1_item"]
+[ext_resource type="Texture2D" path="res://assets/art/items/glowcap_soup.png" id="2_icon"]
+
+[resource]
+script = ExtResource("1_item")
+id = &"glowcap_soup"
+display_name = "Glowcap Soup"
+description = "A gently glowing broth. Ghosts say it warms them right through."
+kind = 1
+icon = ExtResource("2_icon")
+price = 10

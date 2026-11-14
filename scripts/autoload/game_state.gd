@@ -15,6 +15,8 @@ var session_active: bool = false
 var satchel := Inventory.new(BASE_SATCHEL_CAPACITY)
 ## Tavern storage (unlimited).
 var pantry := Inventory.new(Inventory.UNLIMITED)
+## Cooked dishes waiting on the serving counter.
+var counter := Inventory.new(Inventory.UNLIMITED)
 ## Gather-node runtime state by node id; see Gathering for the format.
 var gather_nodes: Dictionary = {}
 
@@ -30,6 +32,7 @@ func new_game() -> void:
 	satchel.load_counts({})
 	satchel.set_capacity(BASE_SATCHEL_CAPACITY)
 	pantry.load_counts({})
+	counter.load_counts({})
 	gather_nodes.clear()
 
 
@@ -57,3 +60,12 @@ func gather(node_id: StringName, item_id: StringName, max_yield: int, regrow_sec
 
 func node_remaining(node_id: StringName, max_yield: int, regrow_seconds: float) -> int:
 	return Gathering.remaining(gather_nodes.get(node_id, {}), max_yield, regrow_seconds, play_time)
+
+
+## Where cooking takes ingredients from, in order: the pantry first, then the satchel.
+func cooking_sources() -> Array:
+	return [pantry, satchel]
+
+
+func cook(recipe: RecipeData) -> bool:
+	return Cooking.cook(recipe, cooking_sources(), counter)

@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="RecipeData" format=3]
+
+[ext_resource type="Script" path="res://scripts/data/recipe_data.gd" id="1_recipe"]
+[ext_resource type="Resource" path="res://data/items/moonberry_tart.tres" id="2_output"]
+
+[resource]
+script = ExtResource("1_recipe")
+id = &"moonberry_tart"
+ingredients = Dictionary[StringName, int]({&"moonberry": 2, &"sweetroot": 1})
+output = ExtResource("2_output")
+cook_seconds = 1.6
