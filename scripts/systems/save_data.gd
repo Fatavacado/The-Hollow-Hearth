@@ -12,7 +12,8 @@ extends RefCounted
 
 const VERSION := 1
 const WORLDS := [&"tavern", &"forest"]
-const STAT_KEYS := ["coins_earned", "coins_spent", "dishes_served"]
+const STAT_KEYS := ["coins_earned", "coins_spent", "dishes_served", "items_gathered",
+		"ingredients_used", "dishes_cooked"]
 
 
 static func capture(state: Node, player_position: Vector2) -> Dictionary:

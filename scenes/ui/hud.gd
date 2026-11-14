@@ -6,6 +6,7 @@ const TOAST_SECONDS := 2.6
 const MAX_TOASTS := 4
 
 var player: Player
+var _gameplay_visible := true
 
 @onready var _satchel_label: Label = %SatchelLabel
 @onready var _coins_label: Label = %CoinsLabel
@@ -35,6 +36,15 @@ func tavern_status_text() -> String:
 	return _status_label.text
 
 
+## Hides the in-game widgets (on the title screen). Toasts always stay visible.
+func set_gameplay_visible(gameplay_visible: bool) -> void:
+	_gameplay_visible = gameplay_visible
+	$Status.visible = gameplay_visible
+	if not gameplay_visible:
+		_prompt_panel.hide()
+		_inventory_panel.hide()
+
+
 func _on_coins_changed(coins: int) -> void:
 	_coins_label.text = str(coins)
 
@@ -45,7 +55,7 @@ func _on_tavern_open_changed(is_open: bool) -> void:
 
 
 func _process(_delta: float) -> void:
-	_status_panel.visible = GameState.location == &"tavern"
+	_status_panel.visible = _gameplay_visible and GameState.location == &"tavern"
 	var target: Interactable = null
 	if player != null and is_instance_valid(player):
 		target = player.target
@@ -57,6 +67,8 @@ func _process(_delta: float) -> void:
 
 
 func _unhandled_input(event: InputEvent) -> void:
+	if not _gameplay_visible:
+		return
 	if event.is_action_pressed(&"inventory"):
 		toggle_inventory()
 		get_viewport().set_input_as_handled()

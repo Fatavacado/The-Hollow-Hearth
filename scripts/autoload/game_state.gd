@@ -71,6 +71,7 @@ func gather(node_id: StringName, item_id: StringName, max_yield: int, regrow_sec
 			play_time, satchel, item_id)
 	if result.gathered > 0:
 		gather_nodes[node_id] = result.state
+		stats["items_gathered"] += result.gathered
 	return result.gathered
 
 
@@ -84,7 +85,12 @@ func cooking_sources() -> Array:
 
 
 func cook(recipe: RecipeData) -> bool:
-	return Cooking.cook(recipe, cooking_sources(), counter)
+	if not Cooking.cook(recipe, cooking_sources(), counter):
+		return false
+	for id: StringName in recipe.ingredients:
+		stats["ingredients_used"] += recipe.ingredients[id]
+	stats["dishes_cooked"] += 1
+	return true
 
 
 func earn(amount: int) -> bool:
@@ -139,5 +145,7 @@ func record_served() -> void:
 	stats["dishes_served"] += 1
 
 
+## Ledgers: coins == earned - spent; held ingredients == gathered - used; counter == cooked - served.
 func _fresh_stats() -> Dictionary:
-	return {"coins_earned": 0, "coins_spent": 0, "dishes_served": 0}
+	return {"coins_earned": 0, "coins_spent": 0, "dishes_served": 0, "items_gathered": 0,
+			"ingredients_used": 0, "dishes_cooked": 0}
