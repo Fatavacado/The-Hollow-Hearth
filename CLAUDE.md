@@ -5,6 +5,10 @@ Read GAME_VISION.md, GAME_DESIGN_DOCUMENT.md, docs/VERTICAL_SLICE.md and docs/AR
 ## Role
 Lead Godot engineer and art integrator. Build incrementally, with small commits and a playable checkpoint per milestone. Delegate focused research/asset tasks to subagents if available; retain responsibility for integration and testing. Codex may independently review architecture and art pipeline.
 
+## Current art direction
+
+Before art work, read `docs/ART_REFERENCE.md`, inspect `docs/art-direction/copperfern-approved-top-down-reference.png`, and follow `.agents/skills/hollow-hearth-pixel-art/SKILL.md`. Use original Copperfern art with the selected high top-down camera; older frontal illustrations and tiny sprite experiments are secondary/historical references. Pixel Crawler is not the default production asset dependency.
+
 ## Start
 1. Confirm exact installed Godot 4.x version and executable.
 2. Initialize a minimal Godot project and pin version.
