@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" path="res://scenes/world/tavern/hearth.tscn" id="3_hearth"]
 [ext_resource type="Script" path="res://scenes/world/door_trigger.gd" id="4_door"]
 [ext_resource type="Script" path="res://scenes/world/spawn_point.gd" id="5_spawn"]
-[ext_resource type="Texture2D" path="res://assets/art/props/pantry_chest.png" id="6_pantry"]
+[ext_resource type="PackedScene" path="res://scenes/world/tavern/pantry.tscn" id="6_pantry"]
 [ext_resource type="Texture2D" path="res://assets/art/props/counter.png" id="7_counter"]
 [ext_resource type="Texture2D" path="res://assets/art/props/table.png" id="8_table"]
 [ext_resource type="Texture2D" path="res://assets/art/props/stool.png" id="9_stool"]
@@ -103,11 +103,8 @@ y_sort_enabled = true
 [node name="Hearth" parent="Actors" instance=ExtResource("3_hearth")]
 position = Vector2(80, 128)
 
-[node name="Pantry" parent="Actors" instance=ExtResource("2_prop")]
+[node name="Pantry" parent="Actors" instance=ExtResource("6_pantry")]
 position = Vector2(184, 126)
-texture = ExtResource("6_pantry")
-foot_row = 27
-blocker_size = Vector2(30, 10)
 
 [node name="Counter" parent="Actors" instance=ExtResource("2_prop")]
 position = Vector2(112, 192)

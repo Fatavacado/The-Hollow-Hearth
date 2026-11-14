@@ -1,0 +1,22 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scenes/world/tavern/pantry.gd" id="1_pantry"]
+[ext_resource type="Texture2D" path="res://assets/art/props/pantry_chest.png" id="2_tex"]
+[ext_resource type="Script" path="res://scenes/interaction/interactable.gd" id="3_interactable"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_use"]
+size = Vector2(36, 22)
+
+[node name="Pantry" type="StaticBody2D"]
+collision_mask = 0
+script = ExtResource("1_pantry")
+texture = ExtResource("2_tex")
+foot_row = 27
+blocker_size = Vector2(30, 10)
+
+[node name="Interactable" type="Area2D" parent="."]
+position = Vector2(0, -6)
+script = ExtResource("3_interactable")
+
+[node name="Shape" type="CollisionShape2D" parent="Interactable"]
+shape = SubResource("RectangleShape2D_use")

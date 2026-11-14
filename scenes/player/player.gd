@@ -6,15 +6,21 @@ extends CharacterBody2D
 const SHEET_COLUMNS := 5
 const ROW_BY_FACING := {Vector2.DOWN: 0, Vector2.LEFT: 1, Vector2.RIGHT: 2, Vector2.UP: 3}
 
+## How far ahead of the feet (in the facing direction) the interaction sensor sits.
+const REACH := 14.0
+
 @export var speed := 110.0
 @export var walk_fps := 9.0
 
 var facing := Vector2.DOWN
 var input_enabled := true
+## The interactable the player would use right now, or null.
+var target: Interactable
 var _walk_time := 0.0
 
 @onready var sprite: Sprite2D = $Sprite
 @onready var camera: Camera2D = $Camera
+@onready var _sensor: Area2D = $InteractionSensor
 
 
 func _physics_process(delta: float) -> void:
@@ -25,6 +31,34 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	_update_facing(direction)
 	_update_frame(delta, direction != Vector2.ZERO)
+	_update_target()
+
+
+func _unhandled_input(event: InputEvent) -> void:
+	if input_enabled and event.is_action_pressed(&"interact") and try_interact():
+		get_viewport().set_input_as_handled()
+
+
+## Uses the current target. Returns false when there is nothing usable in reach.
+func try_interact() -> bool:
+	if target == null or not is_instance_valid(target) or not target.enabled:
+		return false
+	target.interact(self)
+	return true
+
+
+func _update_target() -> void:
+	_sensor.position = facing * REACH + Vector2(0, -6)
+	var best: Interactable = null
+	var best_distance := INF
+	if input_enabled:
+		for area in _sensor.get_overlapping_areas():
+			if area is Interactable and area.enabled:
+				var d := area.global_position.distance_squared_to(_sensor.global_position)
+				if d < best_distance:
+					best = area
+					best_distance = d
+	target = best
 
 
 func set_camera_limits(limits: Rect2i) -> void:

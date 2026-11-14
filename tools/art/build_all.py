@@ -5,6 +5,7 @@ Then let Godot re-import (open the editor, or run tools/run_tests.sh).
 """
 import gen_characters
 import gen_font
+import gen_items
 import gen_tavern
 import gen_world
 
@@ -13,3 +14,4 @@ if __name__ == "__main__":
     gen_characters.main()
     gen_world.main()
     gen_tavern.main()
+    gen_items.main()

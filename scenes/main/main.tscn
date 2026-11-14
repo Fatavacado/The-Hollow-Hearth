@@ -1,11 +1,14 @@
 [gd_scene format=3]
 
 [ext_resource type="Script" path="res://scenes/main/main.gd" id="1_main"]
+[ext_resource type="PackedScene" path="res://scenes/ui/hud.tscn" id="2_hud"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_main")
 
 [node name="WorldSlot" type="Node2D" parent="."]
+
+[node name="HUD" parent="." instance=ExtResource("2_hud")]
 
 [node name="BannerLayer" type="CanvasLayer" parent="."]
 layer = 40

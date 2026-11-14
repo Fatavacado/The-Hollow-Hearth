@@ -15,6 +15,7 @@ var player: Player
 var _traveling := false
 var _banner_tween: Tween
 
+@onready var hud: HUD = $HUD
 @onready var _world_slot: Node2D = $WorldSlot
 @onready var _fade: ColorRect = %Fade
 @onready var _banner: Label = %Banner
@@ -49,6 +50,7 @@ func _on_travel_requested(world_id: StringName, spawn_id: StringName) -> void:
 func _enter_world(world_id: StringName, spawn_id: StringName) -> void:
 	if player == null:
 		player = PLAYER_SCENE.instantiate()
+		hud.player = player
 	if player.get_parent() != null:
 		player.get_parent().remove_child(player)
 	if current_world != null:

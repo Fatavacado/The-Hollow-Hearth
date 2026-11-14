@@ -1,0 +1,96 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scenes/ui/hud.gd" id="1_hud"]
+[ext_resource type="Texture2D" path="res://assets/art/items/satchel.png" id="2_satchel"]
+
+[node name="HUD" type="CanvasLayer"]
+layer = 10
+script = ExtResource("1_hud")
+
+[node name="Status" type="PanelContainer" parent="."]
+offset_left = 6.0
+offset_top = 6.0
+offset_right = 60.0
+offset_bottom = 28.0
+mouse_filter = 2
+
+[node name="Row" type="HBoxContainer" parent="Status"]
+layout_mode = 2
+theme_override_constants/separation = 3
+
+[node name="SatchelIcon" type="TextureRect" parent="Status/Row"]
+layout_mode = 2
+texture = ExtResource("2_satchel")
+stretch_mode = 3
+
+[node name="SatchelLabel" type="Label" parent="Status/Row"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "0/10"
+
+[node name="PromptPanel" type="PanelContainer" parent="."]
+unique_name_in_owner = true
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -60.0
+offset_top = -30.0
+offset_right = 60.0
+offset_bottom = -12.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+
+[node name="PromptLabel" type="Label" parent="PromptPanel"]
+unique_name_in_owner = true
+layout_mode = 2
+horizontal_alignment = 1
+
+[node name="Toasts" type="VBoxContainer" parent="."]
+unique_name_in_owner = true
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -6.0
+offset_top = 6.0
+offset_right = -6.0
+offset_bottom = 6.0
+grow_horizontal = 0
+mouse_filter = 2
+alignment = 2
+
+[node name="InventoryPanel" type="PanelContainer" parent="."]
+unique_name_in_owner = true
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -90.0
+offset_top = -100.0
+offset_right = 90.0
+offset_bottom = 60.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_type_variation = &"WindowPanel"
+
+[node name="Layout" type="VBoxContainer" parent="InventoryPanel"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="InventoryPanel/Layout"]
+layout_mode = 2
+text = "Inventory"
+horizontal_alignment = 1
+theme_type_variation = &"HeaderLabel"
+
+[node name="InventoryList" type="VBoxContainer" parent="InventoryPanel/Layout"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Hint" type="Label" parent="InventoryPanel/Layout"]
+layout_mode = 2
+text = "Tab to close"
+horizontal_alignment = 1
+theme_type_variation = &"MutedLabel"

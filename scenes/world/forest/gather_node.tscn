@@ -1,0 +1,18 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scenes/world/forest/gather_node.gd" id="1_node"]
+[ext_resource type="Script" path="res://scenes/interaction/interactable.gd" id="2_interactable"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_use"]
+size = Vector2(30, 20)
+
+[node name="GatherNode" type="StaticBody2D"]
+collision_mask = 0
+script = ExtResource("1_node")
+
+[node name="Interactable" type="Area2D" parent="."]
+position = Vector2(0, -10)
+script = ExtResource("2_interactable")
+
+[node name="Shape" type="CollisionShape2D" parent="Interactable"]
+shape = SubResource("RectangleShape2D_use")

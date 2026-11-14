@@ -20,6 +20,16 @@ const PROPS := {
 }
 ## Props tall enough to hide the player; they fade while the player is behind them.
 const TALL_PROPS := ["T", "Y", "P"]
+const GATHER_NODE_SCENE := preload("res://scenes/world/forest/gather_node.tscn")
+const REGROW_SECONDS := 120.0
+## char -> [item, sprite base name, max yield per harvest, foot_row, blocker size]
+const GATHER_NODES := {
+	"g": [preload("res://data/items/glowcap.tres"), "glowcap", 2, 25, Vector2.ZERO],
+	"u": [preload("res://data/items/moonberry.tres"), "moonberry", 3, 26, Vector2(26, 10)],
+	"f": [preload("res://data/items/fernleaf.tres"), "fernleaf", 2, 27, Vector2.ZERO],
+	"v": [preload("res://data/items/sweetroot.tres"), "sweetroot", 2, 22, Vector2.ZERO],
+	"h": [preload("res://data/items/honeycomb.tres"), "honeycomb", 2, 27, Vector2(40, 10)],
+}
 const DECOR_PERCENT := 16
 const DECOR_TILE_COUNT := 8
 
@@ -81,3 +91,22 @@ func _place_props() -> void:
 		var tavern := TAVERN_EXTERIOR.instantiate()
 		tavern.position = cell_foot(cell)
 		actors.add_child(tavern)
+	_place_gather_nodes()
+
+
+func _place_gather_nodes() -> void:
+	for character: String in GATHER_NODES:
+		var spec: Array = GATHER_NODES[character]
+		for cell in grid.find(character):
+			var node: GatherNode = GATHER_NODE_SCENE.instantiate()
+			node.node_id = StringName("forest:%d,%d" % [cell.x, cell.y])
+			node.item = spec[0]
+			node.full_texture = load("res://assets/art/nodes/%s_full.png" % spec[1])
+			node.empty_texture = load("res://assets/art/nodes/%s_empty.png" % spec[1])
+			node.max_yield = spec[2]
+			node.foot_row = spec[3]
+			node.blocker_size = spec[4]
+			node.regrow_seconds = REGROW_SECONDS
+			node.texture = node.full_texture
+			node.position = cell_foot(cell) + Vector2(0, -4)
+			actors.add_child(node)
