@@ -1,0 +1,219 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scenes/world/tavern/tavern.gd" id="1_tavern"]
+[ext_resource type="PackedScene" path="res://scenes/props/prop.tscn" id="2_prop"]
+[ext_resource type="PackedScene" path="res://scenes/world/tavern/hearth.tscn" id="3_hearth"]
+[ext_resource type="Script" path="res://scenes/world/door_trigger.gd" id="4_door"]
+[ext_resource type="Script" path="res://scenes/world/spawn_point.gd" id="5_spawn"]
+[ext_resource type="Texture2D" path="res://assets/art/props/pantry_chest.png" id="6_pantry"]
+[ext_resource type="Texture2D" path="res://assets/art/props/counter.png" id="7_counter"]
+[ext_resource type="Texture2D" path="res://assets/art/props/table.png" id="8_table"]
+[ext_resource type="Texture2D" path="res://assets/art/props/stool.png" id="9_stool"]
+[ext_resource type="Texture2D" path="res://assets/art/props/barrel.png" id="10_barrel"]
+[ext_resource type="Texture2D" path="res://assets/art/props/crate.png" id="11_crate"]
+[ext_resource type="Texture2D" path="res://assets/art/props/sign_closed.png" id="12_sign"]
+[ext_resource type="Texture2D" path="res://assets/art/props/plant.png" id="13_plant"]
+[ext_resource type="Texture2D" path="res://assets/art/props/rug.png" id="14_rug"]
+[ext_resource type="Texture2D" path="res://assets/art/props/shelf.png" id="15_shelf"]
+[ext_resource type="Texture2D" path="res://assets/art/props/window.png" id="16_window"]
+[ext_resource type="Texture2D" path="res://assets/art/props/notice_board.png" id="17_board"]
+[ext_resource type="Texture2D" path="res://assets/art/props/wall_lantern.png" id="18_lantern"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_exit"]
+size = Vector2(64, 16)
+
+[sub_resource type="Gradient" id="Gradient_light"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_light"]
+gradient = SubResource("Gradient_light")
+width = 64
+height = 64
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+
+[node name="Tavern" type="Node2D"]
+script = ExtResource("1_tavern")
+world_id = &"tavern"
+map_path = "res://data/maps/tavern.txt"
+display_name = "The Hollow Hearth"
+
+[node name="Ambience" type="CanvasModulate" parent="."]
+color = Color(0.86, 0.79, 0.74, 1)
+
+[node name="Ground" type="TileMapLayer" parent="."]
+
+[node name="WallDecor" type="Node2D" parent="."]
+
+[node name="Shelf" type="Sprite2D" parent="WallDecor"]
+position = Vector2(164, 44)
+texture = ExtResource("15_shelf")
+centered = false
+
+[node name="WindowWest" type="Sprite2D" parent="WallDecor"]
+position = Vector2(262, 40)
+texture = ExtResource("16_window")
+centered = false
+
+[node name="NoticeBoard" type="Sprite2D" parent="WallDecor"]
+position = Vector2(392, 40)
+texture = ExtResource("17_board")
+centered = false
+
+[node name="WindowEast" type="Sprite2D" parent="WallDecor"]
+position = Vector2(462, 40)
+texture = ExtResource("16_window")
+centered = false
+
+[node name="LanternWest" type="Sprite2D" parent="WallDecor"]
+position = Vector2(238, 50)
+texture = ExtResource("18_lantern")
+centered = false
+
+[node name="Light" type="PointLight2D" parent="WallDecor/LanternWest"]
+position = Vector2(7, 11)
+color = Color(1, 0.8, 0.5, 1)
+energy = 0.55
+texture = SubResource("GradientTexture2D_light")
+texture_scale = 2.0
+
+[node name="LanternEast" type="Sprite2D" parent="WallDecor"]
+position = Vector2(524, 50)
+texture = ExtResource("18_lantern")
+centered = false
+
+[node name="Light" type="PointLight2D" parent="WallDecor/LanternEast"]
+position = Vector2(7, 11)
+color = Color(1, 0.8, 0.5, 1)
+energy = 0.55
+texture = SubResource("GradientTexture2D_light")
+texture_scale = 2.0
+
+[node name="FloorDecor" type="Node2D" parent="."]
+
+[node name="Rug" type="Sprite2D" parent="FloorDecor"]
+position = Vector2(360, 206)
+texture = ExtResource("14_rug")
+centered = false
+
+[node name="Actors" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="Hearth" parent="Actors" instance=ExtResource("3_hearth")]
+position = Vector2(80, 128)
+
+[node name="Pantry" parent="Actors" instance=ExtResource("2_prop")]
+position = Vector2(184, 126)
+texture = ExtResource("6_pantry")
+foot_row = 27
+blocker_size = Vector2(30, 10)
+
+[node name="Counter" parent="Actors" instance=ExtResource("2_prop")]
+position = Vector2(112, 192)
+texture = ExtResource("7_counter")
+foot_row = 49
+blocker_size = Vector2(160, 22)
+
+[node name="TableA" parent="Actors" instance=ExtResource("2_prop")]
+position = Vector2(360, 216)
+texture = ExtResource("8_table")
+foot_row = 39
+blocker_size = Vector2(36, 10)
+
+[node name="StoolA1" parent="Actors" instance=ExtResource("2_prop")]
+position = Vector2(322, 218)
+texture = ExtResource("9_stool")
+foot_row = 18
+blocker_size = Vector2(12, 6)
+
+[node name="StoolA2" parent="Actors" instance=ExtResource("2_prop")]
+position = Vector2(398, 218)
+texture = ExtResource("9_stool")
+foot_row = 18
+blocker_size = Vector2(12, 6)
+
+[node name="TableB" parent="Actors" instance=ExtResource("2_prop")]
+position = Vector2(520, 216)
+texture = ExtResource("8_table")
+foot_row = 39
+blocker_size = Vector2(36, 10)
+
+[node name="StoolB1" parent="Actors" instance=ExtResource("2_prop")]
+position = Vector2(482, 218)
+texture = ExtResource("9_stool")
+foot_row = 18
+blocker_size = Vector2(12, 6)
+
+[node name="StoolB2" parent="Actors" instance=ExtResource("2_prop")]
+position = Vector2(558, 218)
+texture = ExtResource("9_stool")
+foot_row = 18
+blocker_size = Vector2(12, 6)
+
+[node name="TableC" parent="Actors" instance=ExtResource("2_prop")]
+position = Vector2(440, 292)
+texture = ExtResource("8_table")
+foot_row = 39
+blocker_size = Vector2(36, 10)
+
+[node name="StoolC1" parent="Actors" instance=ExtResource("2_prop")]
+position = Vector2(402, 294)
+texture = ExtResource("9_stool")
+foot_row = 18
+blocker_size = Vector2(12, 6)
+
+[node name="StoolC2" parent="Actors" instance=ExtResource("2_prop")]
+position = Vector2(478, 294)
+texture = ExtResource("9_stool")
+foot_row = 18
+blocker_size = Vector2(12, 6)
+
+[node name="OpenSign" parent="Actors" instance=ExtResource("2_prop")]
+position = Vector2(232, 318)
+texture = ExtResource("12_sign")
+foot_row = 39
+blocker_size = Vector2(34, 6)
+
+[node name="Barrel" parent="Actors" instance=ExtResource("2_prop")]
+position = Vector2(602, 128)
+texture = ExtResource("10_barrel")
+foot_row = 32
+blocker_size = Vector2(22, 8)
+
+[node name="Crate" parent="Actors" instance=ExtResource("2_prop")]
+position = Vector2(572, 126)
+texture = ExtResource("11_crate")
+foot_row = 26
+blocker_size = Vector2(26, 8)
+
+[node name="PlantWest" parent="Actors" instance=ExtResource("2_prop")]
+position = Vector2(46, 318)
+texture = ExtResource("13_plant")
+foot_row = 30
+blocker_size = Vector2(14, 6)
+
+[node name="PlantEast" parent="Actors" instance=ExtResource("2_prop")]
+position = Vector2(604, 318)
+texture = ExtResource("13_plant")
+foot_row = 30
+blocker_size = Vector2(14, 6)
+
+[node name="StartSpawn" type="Marker2D" parent="."]
+position = Vector2(248, 160)
+script = ExtResource("5_spawn")
+spawn_id = &"start"
+
+[node name="EntranceSpawn" type="Marker2D" parent="."]
+position = Vector2(320, 300)
+script = ExtResource("5_spawn")
+spawn_id = &"entrance"
+
+[node name="ExitDoor" type="Area2D" parent="."]
+position = Vector2(320, 344)
+script = ExtResource("4_door")
+target_world = &"forest"
+target_spawn = &"tavern_door"
+
+[node name="Shape" type="CollisionShape2D" parent="ExitDoor"]
+shape = SubResource("RectangleShape2D_exit")

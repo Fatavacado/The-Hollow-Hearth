@@ -1,0 +1,28 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://scenes/props/prop.tscn" id="1_prop"]
+[ext_resource type="Texture2D" path="res://assets/art/props/tavern_exterior.png" id="2_tex"]
+[ext_resource type="Script" path="res://scenes/world/door_trigger.gd" id="3_door"]
+[ext_resource type="Script" path="res://scenes/world/spawn_point.gd" id="4_spawn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_door"]
+size = Vector2(28, 18)
+
+[node name="TavernExterior" instance=ExtResource("1_prop")]
+texture = ExtResource("2_tex")
+foot_row = 187
+blocker_size = Vector2(200, 150)
+
+[node name="Door" type="Area2D" parent="."]
+position = Vector2(0, -3)
+script = ExtResource("3_door")
+target_world = &"tavern"
+target_spawn = &"entrance"
+
+[node name="Shape" type="CollisionShape2D" parent="Door"]
+shape = SubResource("RectangleShape2D_door")
+
+[node name="DoorSpawn" type="Marker2D" parent="."]
+position = Vector2(0, 24)
+script = ExtResource("4_spawn")
+spawn_id = &"tavern_door"

@@ -1,0 +1,16 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scenes/world/forest/forest.gd" id="1_forest"]
+
+[node name="Forest" type="Node2D"]
+script = ExtResource("1_forest")
+world_id = &"forest"
+map_path = "res://data/maps/forest.txt"
+display_name = "Whisperwood"
+
+[node name="Ground" type="TileMapLayer" parent="."]
+
+[node name="Decor" type="TileMapLayer" parent="."]
+
+[node name="Actors" type="Node2D" parent="."]
+y_sort_enabled = true

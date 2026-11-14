@@ -73,6 +73,11 @@ func wait_physics_frames(count: int) -> void:
 		await get_tree().physics_frame
 
 
+## Real-time wait. Headless frames are uncapped, so time-based effects (tweens) need this.
+func wait_seconds(seconds: float) -> void:
+	await get_tree().create_timer(seconds).timeout
+
+
 func _same(a: Variant, b: Variant) -> bool:
 	# Numeric values compare by value regardless of int/float; everything else must match type.
 	var numeric := [TYPE_INT, TYPE_FLOAT]

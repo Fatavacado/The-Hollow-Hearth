@@ -1,0 +1,14 @@
+; The Hollow Hearth - tavern interior (one char = one 32x32 cell). Furniture is placed in tavern.tscn.
+; '|' side wall  '+' wall cap  'W' upper wall  'I' upper wall with timber post  'w' lower wall (wainscot)
+; '.' floor  'm' floor with doormat  '_' front wall  'D' doorway (exit to the forest)
+|++++++++++++++++++|
+|WWWIWWWWWWIWWWWWIW|
+|wwwwwwwwwwwwwwwwww|
+|..................|
+|..................|
+|..................|
+|..................|
+|..................|
+|..................|
+|........mm........|
+|________DD________|
