@@ -50,7 +50,7 @@ func _exit_tree() -> void:
 	for player: AudioStreamPlayer in _voices + [_ambience]:
 		player.stop()
 		player.stream = null
-	OS.delay_msec(60)
+	OS.delay_msec(250)  # a few audio mix steps; 60 ms failed ~1 in 3 headless boots
 
 
 func sound_names() -> Array:
