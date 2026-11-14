@@ -20,6 +20,8 @@ Every asset in the repository is listed here **before** it is committed. Columns
 | Guest UI sprites (order bubble, heart and sad emotes) | `assets/art/ui/*.png` | `tools/art/gen_items.py` | Original | Project-owned | Yes | placeholder |
 | Sound effects (pickup, store, stir, cook done, coin, bell, door, ui, buy) and forest/tavern ambience loops | `assets/audio/*.wav` | `tools/art/gen_audio.py` (synthesised) | Original | Project-owned | Yes | placeholder |
 | Gameplay screenshots and agent session report | `docs/screens/*` | Captured from the game | Original | Project-owned | Yes | documentation |
+| Copperfern art benchmark v001 (player 4-dir idle/walk, forest terrain/decor/tree/bush/glowcap/moonberry, tavern tiles/counter/table/chair/stove/fire/pot) | `assets/art/benchmark/copperfern/*` | Native pixels authored in `tools/art/copperfern/*.py` (2026-11-15); appearance follows HH-CONCEPT-002 and the approved top-down reference, no pixels copied or downscaled from them | Original | Project-owned | Yes | benchmark |
+| Copperfern benchmark captures, GIFs and contact sheets | `docs/art/benchmark/copperfern_v001/*` | Captured from the game / built from the assets above | Original | Project-owned | Yes | documentation |
 | Benchmark screenshots | `docs/benchmark/*.png` | Captured from the game by `tests/visual/capture_benchmark.tscn` | Original | Project-owned | Yes | documentation |
 
 ## Generated-asset policy

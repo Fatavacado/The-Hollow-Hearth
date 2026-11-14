@@ -1,0 +1,169 @@
+{
+  "id": "copperfern_benchmark_v001",
+  "status": "benchmark (owner review pending)",
+  "palette": "copperfern_candidate_v001",
+  "tile": [
+    32,
+    32
+  ],
+  "files": {
+    "player_walk_v001.png": {
+      "size": [
+        288,
+        256
+      ],
+      "sha256": "9b5f359fda8780f8ee1133a67da31092044b7f0e85d6aa20edb92de14079ef04"
+    },
+    "player_idle_v001.png": {
+      "size": [
+        96,
+        256
+      ],
+      "sha256": "cc266ef0419e200da356536fa1fb9ca4591d7a81cd5a09a2f631a0b38a6abb1d"
+    },
+    "player_runtime_v001.png": {
+      "size": [
+        384,
+        256
+      ],
+      "sha256": "6a156e621ce8331646462368fef0ae9e8ecd92a5dc06de7de3b11d72dd630ba9"
+    },
+    "forest_terrain_v001.png": {
+      "size": [
+        512,
+        128
+      ],
+      "sha256": "f7a74a5427864d463bfc8940eb827be9ccbf361576e1c52bb95e081bdecf2326"
+    },
+    "forest_decor_v001.png": {
+      "size": [
+        192,
+        32
+      ],
+      "sha256": "380fb04cb9831a02a4c142492f57ed4e1de4ecc1cc4542bf68a8883f937cca06"
+    },
+    "tree_round_v001.png": {
+      "size": [
+        80,
+        100
+      ],
+      "sha256": "fea2f3bca3334ddc1e78cbd65bf8d3ac976256b43a33637b7467efa3d99e37ef"
+    },
+    "bush_v001.png": {
+      "size": [
+        36,
+        30
+      ],
+      "sha256": "2eb4364e4e68434f2397880a6826c21220800b9b12d692ca1c6a37041caa175b"
+    },
+    "moonberry_full_v001.png": {
+      "size": [
+        36,
+        30
+      ],
+      "sha256": "eb6805cf3eeeb6545fadf8a44af938aa0f376e8ab6bec4551464b98147590b92"
+    },
+    "moonberry_empty_v001.png": {
+      "size": [
+        36,
+        30
+      ],
+      "sha256": "2eb4364e4e68434f2397880a6826c21220800b9b12d692ca1c6a37041caa175b"
+    },
+    "glowcap_full_v001.png": {
+      "size": [
+        32,
+        28
+      ],
+      "sha256": "4a3c79b1a4f5727a2d1879c81d4876f030fdf80052e531a379177f6fa2cdef0d"
+    },
+    "glowcap_empty_v001.png": {
+      "size": [
+        32,
+        28
+      ],
+      "sha256": "2e86ab8883e7e84125d9f8008f5b4ed9a4e6498b0f5e2f84a24d032a53000d3e"
+    },
+    "tavern_tiles_v001.png": {
+      "size": [
+        256,
+        64
+      ],
+      "sha256": "442126d4b5c27a697ec7676b501ed1120bf1d38a649eb1d46b81c44c537ec35e"
+    },
+    "counter_v001.png": {
+      "size": [
+        132,
+        52
+      ],
+      "sha256": "3ba97d50e39b488d830a10f8caaac558d02004f3c5461044102636b7e1777bbe"
+    },
+    "table_v001.png": {
+      "size": [
+        68,
+        52
+      ],
+      "sha256": "bfc6ba485f694f9722773b34274c24303e55d053f12a53aff4c8c393ef4510cc"
+    },
+    "chair_v001.png": {
+      "size": [
+        24,
+        32
+      ],
+      "sha256": "d216232a233ff53d294432d0bc4e351206e6bc3edad270241a63ffdf2aa359ff"
+    },
+    "stove_v001.png": {
+      "size": [
+        56,
+        92
+      ],
+      "sha256": "5e8bb877d44095c7331f0b4563c8f6806ad6b374e2847d81d25a760412e23ca3"
+    },
+    "stove_fire_v001.png": {
+      "size": [
+        54,
+        8
+      ],
+      "sha256": "2b7b3be001bb1b3b87feb4d49bd18fab1ca06098873740b8330a0d3450d809a8"
+    },
+    "copper_pot_v001.png": {
+      "size": [
+        26,
+        20
+      ],
+      "sha256": "f0cd988c29257e5ab3f4340dde59e2c58048fee53444ba09a7c20d85a0a38ee0"
+    }
+  },
+  "player": {
+    "frame_size": [
+      48,
+      64
+    ],
+    "anchor": [
+      24,
+      58
+    ],
+    "rows": [
+      "south",
+      "west",
+      "east",
+      "north"
+    ],
+    "walk": {
+      "file": "player_walk_v001.png",
+      "columns": 6,
+      "fps": 10
+    },
+    "idle": {
+      "file": "player_idle_v001.png",
+      "columns": 2,
+      "fps": 2
+    },
+    "runtime": {
+      "file": "player_runtime_v001.png",
+      "columns": 8,
+      "layout": "idle0 idle1 walk0..walk5"
+    },
+    "notes": "east is drawn separately for the satchel layer (left hip hidden behind the body)"
+  }
+}

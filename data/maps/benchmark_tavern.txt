@@ -1,0 +1,13 @@
+; Copperfern art benchmark - tavern room. Furniture is placed in cf_tavern.tscn.
+; U/P upper wall (P = timber post)  W/Q lower wall with teal wainscot (Q = post)  L/R wall tops
+; F front wall top  D doorway  . planks  S/s flagstones  m doormat
+LUUPUUUUPUUUUPUUR
+LWWQWWWWQWWWWQWWR
+LSSs............R
+LSSSs...........R
+Lss.............R
+L...............R
+L...............R
+L...............R
+L.......mm......R
+FFFFFFFFDDFFFFFFF

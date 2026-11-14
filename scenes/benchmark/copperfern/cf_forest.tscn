@@ -1,0 +1,35 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scenes/benchmark/copperfern/cf_forest.gd" id="1_forest"]
+[ext_resource type="Script" path="res://scenes/world/door_trigger.gd" id="2_door"]
+[ext_resource type="Script" path="res://scenes/world/spawn_point.gd" id="3_spawn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_exit"]
+size = Vector2(96, 12)
+
+[node name="CopperfernForest" type="Node2D"]
+script = ExtResource("1_forest")
+world_id = &"forest"
+map_path = "res://data/maps/benchmark_forest.txt"
+display_name = "Copperfern Clearing"
+
+[node name="Ground" type="TileMapLayer" parent="."]
+
+[node name="Decor" type="TileMapLayer" parent="."]
+
+[node name="Actors" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="TavernPath" type="Area2D" parent="."]
+position = Vector2(384, 410)
+script = ExtResource("2_door")
+target_world = &"tavern"
+target_spawn = &"entrance"
+
+[node name="Shape" type="CollisionShape2D" parent="TavernPath"]
+shape = SubResource("RectangleShape2D_exit")
+
+[node name="FromTavern" type="Marker2D" parent="."]
+position = Vector2(384, 372)
+script = ExtResource("3_spawn")
+spawn_id = &"tavern_door"
