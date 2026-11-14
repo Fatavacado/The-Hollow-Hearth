@@ -38,6 +38,8 @@ var _collector := ErrorCollector.new()
 
 func _ready() -> void:
 	OS.add_logger(_collector)
+	# Never touch the player's real save while testing (autosaves happen during travel).
+	SaveService.save_path = "user://test_run_save.json"
 	_run_all.call_deferred()
 
 
@@ -83,6 +85,7 @@ func _run_all() -> void:
 	for name in failed_names:
 		print("  failed: %s" % name)
 	OS.remove_logger(_collector)
+	SaveService.delete_save()
 	get_tree().quit(0 if failed == 0 and passed > 0 else 1)
 
 
