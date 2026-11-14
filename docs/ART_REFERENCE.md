@@ -1,6 +1,6 @@
 # Approved Copperfern gameplay art reference
 
-**Owner-selected direction: original Copperfern pixel art with a high top-down RPG camera.** Published for the development team as the visual target. Read this before using older concept images.
+**Owner-selected direction: original Copperfern pixel art with a high top-down RPG camera and the approved brighter starting-region palette.** Published for the development team as the visual target. Read this before using older concept images.
 
 ![Selected high top-down Copperfern forest and tavern reference](art-direction/copperfern-approved-top-down-reference.png)
 
@@ -11,10 +11,13 @@
 - High top-down / three-quarter, non-isometric camera on rectangular terrain. Show substantial ground, floor, roof and furniture-top surfaces. Keep vertical front faces shallow; avoid the earlier low/frontal illustrated-diorama view.
 - The same player, camera, pixel density and believable prop scale outdoors and indoors. Doorways, chairs, counter access and walkways must fit the actor.
 - Original Copperfern identity: teal/russet clothing, expressive dark curly hair, ingredient satchel, warm horizontal timber, teal roof/shutters, restrained copper and stepped forest masses.
-- Sunny readable forest approaches and a welcoming tavern with cooking, preparation, serving and seating areas. Quiet walking surfaces and distinctive interaction silhouettes.
+- Bright, cheerful starting-region daylight: fresh greens, golden leaf highlights, pale ochre paths, turquoise water, ivory plaster and honey-colored wood. Teal and terracotta accents retain Copperfern identity. Keep selective shadows for readability; avoid dark/sepia washes and blanket orange lighting.
+- Sunny readable forest approaches and a welcoming daylight tavern with cooking, preparation, serving and seating areas. Quiet walking surfaces and distinctive interaction silhouettes.
 - Deliberate pixel clusters, coherent material ramps, nearest-neighbor rendering, stable foot origins and real four-direction animation.
 
 The main-region style is selected. Future regions may vary ecology, materials and atmosphere while retaining the shared camera, density and readability contract in [ART_REGIONAL_STYLE.md](ART_REGIONAL_STYLE.md).
+
+The brighter image supersedes the previous muted version at the same reference path; the older image remains in Git history. Stardew Valley informed the requested cheerful daylight mood, not asset designs or an exact palette to copy.
 
 ## How to use this reference
 

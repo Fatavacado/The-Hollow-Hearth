@@ -14,4 +14,4 @@ Start with [GAME_VISION.md](GAME_VISION.md), [GAME_DESIGN_DOCUMENT.md](GAME_DESI
 
 ## Art reference for developers
 
-Use [the approved Copperfern top-down reference](docs/ART_REFERENCE.md) and the [pixel-art production skill](.agents/skills/hollow-hearth-pixel-art/SKILL.md). The selected image defines camera and visual direction; it is not an implemented game screenshot or production tileset.
+Use [the approved Copperfern top-down reference](docs/ART_REFERENCE.md) and the [pixel-art production skill](.agents/skills/hollow-hearth-pixel-art/SKILL.md). The selected brighter image defines the high top-down camera, cheerful starting-region palette and visual direction; it is not an implemented game screenshot or production tileset.

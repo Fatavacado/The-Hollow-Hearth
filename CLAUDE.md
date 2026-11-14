@@ -7,7 +7,7 @@ Lead Godot engineer and art integrator. Build incrementally, with small commits 
 
 ## Current art direction
 
-Before art work, read `docs/ART_REFERENCE.md`, inspect `docs/art-direction/copperfern-approved-top-down-reference.png`, and follow `.agents/skills/hollow-hearth-pixel-art/SKILL.md`. Use original Copperfern art with the selected high top-down camera; older frontal illustrations and tiny sprite experiments are secondary/historical references. Pixel Crawler is not the default production asset dependency.
+Before art work, read `docs/ART_REFERENCE.md`, inspect `docs/art-direction/copperfern-approved-top-down-reference.png`, and follow `.agents/skills/hollow-hearth-pixel-art/SKILL.md`. Use original Copperfern art with the selected high top-down camera and approved brighter starting-region palette (fresh greens, sandy paths, honey wood and clear daylight); older frontal illustrations and tiny sprite experiments are secondary/historical references. Pixel Crawler is not the default production asset dependency.
 
 ## Start
 1. Confirm exact installed Godot 4.x version and executable.

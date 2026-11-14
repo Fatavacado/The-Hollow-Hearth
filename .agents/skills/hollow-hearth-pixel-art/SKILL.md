@@ -17,6 +17,14 @@ No mass production before explicit direction approval and a coherent playable be
 
 The latest owner-approved target is ORIGINAL Copperfern pixel art under a HIGH TOP-DOWN RPG camera, as shown in `docs/art-direction/copperfern-approved-top-down-reference.png`. Broad visible ground/floor, overhead roofs/tree canopies, dominant furniture tops and shallow vertical faces are required. Keep the original character's teal/russet wardrobe, hair and satchel identity but adjust its projection and actor/room scale to this camera. Earlier frontal/diorama environment illustrations are secondary material references, not the gameplay-camera target. Do not automatically shrink to the tiny experiment or lock the earlier larger sprite scale; choose measured native geometry through a coherent scene benchmark. Pixel Crawler is a camera/construction reference, not an approved asset dependency. Do not copy its sprites or layouts.
 
+## Approved starting-region palette and lighting
+
+The owner approved the brighter Copperfern revision. Use fresh spring greens with golden leaf highlights, light sandy/ochre paths, clear turquoise water, warm ivory plaster and honey-colored timber/floorboards. Keep teal roofs/shutters, cheerful terracotta/russet fabrics and small copper/brass accents. Match the current `docs/art-direction/copperfern-approved-top-down-reference.png`; earlier muted/dark studies are secondary references and must not override its daylight values.
+
+Preserve crisp pixel edges, dark selective outlines, character/prop separation and readable contact shadows. Darkness belongs in localized canopy/occlusion shadows and later intentionally mysterious areas, not as a starting-region color wash. The tavern is bright with ambient/window daylight and localized hearth warmth; avoid both dark sepia and a blanket orange tint. Do not simply raise exposure or saturation until materials lose contrast. Stardew Valley is a cheerful daytime mood reference only; create original palette ramps and artwork, without copying its sprites or designs.
+
+Keep the approved high top-down camera and shared regional style contract. This is visual palette approval, not a locked indexed palette, exact swatch list, runtime lighting configuration or production-assets validation. Future regions retain room for intentional atmospheric contrast.
+
 ## Begin each task
 
 1. Inspect Git branch/status, user changes, asset conventions and the actual Godot project. Do not overwrite another agent's work or migrate project settings. Use a dedicated branch for new research unless instructed otherwise. The owner explicitly authorized publishing the current reference package to main; future main updates require task authorization. Use existing isolated checkout; no new worktree unless requested.

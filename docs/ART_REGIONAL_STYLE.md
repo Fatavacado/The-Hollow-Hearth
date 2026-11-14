@@ -1,5 +1,13 @@
 # Shared art language and regional identities
 
+## Approved starting-region palette and lighting
+
+The owner approved the brighter Copperfern revision. Use fresh spring greens with golden leaf highlights, light sandy/ochre paths, clear turquoise water, warm ivory plaster and honey-colored timber/floorboards. Keep teal roofs/shutters, cheerful terracotta/russet fabrics and small copper/brass accents. Match the current `docs/art-direction/copperfern-approved-top-down-reference.png`; earlier muted/dark studies are secondary references and must not override its daylight values.
+
+Preserve crisp pixel edges, dark selective outlines, character/prop separation and readable contact shadows. Darkness belongs in localized canopy/occlusion shadows and later intentionally mysterious areas, not as a starting-region color wash. The tavern is bright with ambient/window daylight and localized hearth warmth; avoid both dark sepia and a blanket orange tint. Do not simply raise exposure or saturation until materials lose contrast. Stardew Valley is a cheerful daytime mood reference only; create original palette ramps and artwork, without copying its sprites or designs.
+
+Keep the approved high top-down camera and shared regional style contract. This is visual palette approval, not a locked indexed palette, exact swatch list, runtime lighting configuration or production-assets validation. Future regions retain room for intentional atmospheric contrast.
+
 ## Current approved visual reference
 
 The owner selected the **original Copperfern art with a high top-down RPG camera** and authorized publication to main for future developers. Read [the reference guide](ART_REFERENCE.md) and inspect `docs/art-direction/copperfern-approved-top-down-reference.png` before drawing or integrating art. This current camera/scene reference supersedes the lower, frontal environment illustrations. Preserve the original character's identity while fitting it to the higher camera and coherent actor/room scale. Earlier numerical profiles are candidates, not locked production geometry. Pixel Crawler informed camera/construction research only; use original art, not its asset pack as the game's default dependency.
