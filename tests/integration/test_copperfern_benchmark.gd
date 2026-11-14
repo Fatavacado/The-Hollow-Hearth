@@ -47,17 +47,22 @@ func test_benchmark_uses_its_own_worlds_and_save_file() -> void:
 	assert_ne(SaveService.save_path, SaveService.DEFAULT_PATH, "never touches the player's real save")
 
 
-func test_player_wears_the_copperfern_sheet_with_six_frame_walk() -> void:
-	assert_true(main.player.sprite.texture.resource_path.ends_with("player_runtime_v001.png"))
-	assert_eq(main.player.sprite.hframes, 8)
+func test_player_wears_the_v002_keeper_sheet_with_four_idle_and_six_walk_frames() -> void:
+	assert_true(main.player.sprite.texture.resource_path.ends_with("player_runtime_v002.png"))
+	assert_eq(main.player.sprite.hframes, 10)
+	assert_eq(main.player.sprite.vframes, 4)
+	assert_eq(main.player.idle_frames, 4)
 	Input.action_press(&"move_right")
+	await wait_physics_frames(2)  # movement starts on the next physics step
 	var columns := {}
 	for i in 40:
 		await wait_physics_frames(1)
-		columns[main.player.sprite.frame % 8] = true
+		columns[main.player.sprite.frame % 10] = true
 	Input.action_release(&"move_right")
-	assert_eq(main.player.sprite.frame / 8, 2, "east row")
+	assert_eq(main.player.sprite.frame / 10, 2, "east row")
 	assert_true(columns.size() >= 5, "six-frame walk cycles: %s" % [columns.keys()])
+	for column: int in columns:
+		assert_true(column >= 4, "walking never shows an idle column: %s" % [columns.keys()])
 
 
 func test_walk_out_gather_walk_back_and_cook_on_the_stove() -> void:

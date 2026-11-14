@@ -1,0 +1,50 @@
+{
+ "tree_round": {
+  "object_id": "e223fa8c-7d9b-4976-bb77-3aba51ba8a0a",
+  "canvas": [
+   96,
+   112
+  ],
+  "prompt": "single round leafy oak tree for a cozy spring forest: full rounded canopy of bright fresh green leaf clusters with golden-lime highlights and dark spruce-green shading, short sturdy brown trunk with a few roots, soft shadow-free base, original game asset"
+ },
+ "glowcap": {
+  "object_id": "3669277d-ac96-470f-b495-1c55b5e811b9",
+  "canvas": [
+   32,
+   32
+  ],
+  "prompt": "small cluster of three pale lavender-white glowing mushrooms with soft cream stems on a tiny tuft of grass, magical cozy forage ingredient, original game asset"
+ },
+ "moonberry": {
+  "object_id": "318104f2-dee1-4ec9-af5b-e650cf283eb1",
+  "prompt": "small round leafy green berry bush covered with plump glossy indigo-blue moonberries with tiny white highlights, cozy forage ingredient, original game asset",
+  "canvas": [
+   48,
+   48
+  ]
+ },
+ "bush": {
+  "object_id": "439ee6a3-983e-453e-b9b9-8f1558cff1e1",
+  "prompt": "small round leafy green shrub of fresh spring leaves with golden-lime highlights and dark green shading, no flowers, original game asset",
+  "canvas": [
+   48,
+   48
+  ]
+ },
+ "bush_v2": {
+  "object_id": "4952d55a-8b7a-4ed3-bf32-835ed6f04db9",
+  "prompt": "small round shrub made of three or four chunky rounded clusters of bright fresh green leaves, golden-lime top highlights, dark spruce-green underside shading, crisp dark outline, matches a cozy oak tree canopy, original game asset",
+  "canvas": [
+   48,
+   40
+  ]
+ },
+ "stove": {
+  "object_id": "7ca0fdd8-b1f3-4256-9b8a-cd028c67bbd6",
+  "prompt": "cozy tavern cooking hearth: squat rounded stone and brick stove with arched fire opening showing warm orange flames, small copper cooking pot on top, short dark iron chimney pipe, warm honey and grey stones, original game asset",
+  "canvas": [
+   64,
+   96
+  ]
+ }
+}

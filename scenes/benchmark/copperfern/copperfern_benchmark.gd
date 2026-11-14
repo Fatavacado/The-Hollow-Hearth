@@ -7,7 +7,8 @@ extends Node
 ## fernleaf and one sweetroot so the clearing's glowcaps and moonberries complete a recipe.
 
 const MAIN_SCENE := preload("res://scenes/main/main.tscn")
-const PLAYER_SHEET := preload("res://assets/art/benchmark/copperfern/player_runtime_v001.png")
+## v002 keeper: PixelLab frames, cleaned and assembled in LibreSprite (tools/art/copperfern_v002).
+const PLAYER_SHEET := preload("res://assets/art/benchmark/copperfern_v002/player_runtime_v002.png")
 const SAVE_PATH := "user://copperfern_benchmark_save.json"
 
 var main: Main
@@ -27,13 +28,13 @@ func _ready() -> void:
 
 func _dress_player(player: Player) -> void:
 	player.sprite.texture = PLAYER_SHEET
-	player.sprite.hframes = 8
+	player.sprite.hframes = 10
 	player.sprite.vframes = 4
 	player.sprite.offset = Vector2(-24, -58)  # anchor (24, 58): feet on the outline row
-	player.idle_frames = 2
+	player.idle_frames = 4
 	player.walk_frames = 6
 	player.walk_fps = 10.0
-	player.idle_fps = 2.0
+	player.idle_fps = 4.0
 	player.sprite.frame = 0
 
 

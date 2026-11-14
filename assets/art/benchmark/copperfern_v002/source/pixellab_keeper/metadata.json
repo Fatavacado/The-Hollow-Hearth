@@ -1,0 +1,97 @@
+{
+  "group_id": "9b87e8f8-9618-47e4-a3ea-57569b351399",
+  "states": [
+    {
+      "character": {
+        "id": "1a08e4b3-7774-418c-ad16-55fdf5f62580",
+        "name": "Idle",
+        "prompt": "cute cozy fantasy tavern keeper with stylized chibi-leaning proportions: large head about one third of body height, short sturdy body. Big fluffy espresso-brown curly hair, warm tan skin, friendly round face. Teal tunic with rolled cream sleeves, russet-orange cooking apron, small brown leather satchel bag with strap hanging on the left hip, charcoal trousers, chunky brown boots. Bright spring daylight colors, soft shading, very readable silhouette, original character",
+        "size": {
+          "width": 52,
+          "height": 52
+        },
+        "template_id": "mannequin",
+        "directions": 8,
+        "view": "high top-down",
+        "created_at": "2026-11-14T16:49:22.060616+00:00"
+      },
+      "folder": "Idle",
+      "frames": {
+        "rotations": {
+          "south": "Idle/rotations/south.png",
+          "south-east": "Idle/rotations/south-east.png",
+          "east": "Idle/rotations/east.png",
+          "north-east": "Idle/rotations/north-east.png",
+          "north": "Idle/rotations/north.png",
+          "north-west": "Idle/rotations/north-west.png",
+          "west": "Idle/rotations/west.png",
+          "south-west": "Idle/rotations/south-west.png"
+        },
+        "animations": {
+          "walking-6-frames": {
+            "south": [
+              "Idle/animations/walking-6-frames/south/frame_000.png",
+              "Idle/animations/walking-6-frames/south/frame_001.png",
+              "Idle/animations/walking-6-frames/south/frame_002.png",
+              "Idle/animations/walking-6-frames/south/frame_003.png",
+              "Idle/animations/walking-6-frames/south/frame_004.png",
+              "Idle/animations/walking-6-frames/south/frame_005.png"
+            ],
+            "west": [
+              "Idle/animations/walking-6-frames/west/frame_000.png",
+              "Idle/animations/walking-6-frames/west/frame_001.png",
+              "Idle/animations/walking-6-frames/west/frame_002.png",
+              "Idle/animations/walking-6-frames/west/frame_003.png",
+              "Idle/animations/walking-6-frames/west/frame_004.png",
+              "Idle/animations/walking-6-frames/west/frame_005.png"
+            ],
+            "east": [
+              "Idle/animations/walking-6-frames/east/frame_000.png",
+              "Idle/animations/walking-6-frames/east/frame_001.png",
+              "Idle/animations/walking-6-frames/east/frame_002.png",
+              "Idle/animations/walking-6-frames/east/frame_003.png",
+              "Idle/animations/walking-6-frames/east/frame_004.png",
+              "Idle/animations/walking-6-frames/east/frame_005.png"
+            ],
+            "north": [
+              "Idle/animations/walking-6-frames/north/frame_000.png",
+              "Idle/animations/walking-6-frames/north/frame_001.png",
+              "Idle/animations/walking-6-frames/north/frame_002.png",
+              "Idle/animations/walking-6-frames/north/frame_003.png",
+              "Idle/animations/walking-6-frames/north/frame_004.png",
+              "Idle/animations/walking-6-frames/north/frame_005.png"
+            ]
+          },
+          "breathing-idle": {
+            "west": [
+              "Idle/animations/breathing-idle/west/frame_000.png",
+              "Idle/animations/breathing-idle/west/frame_001.png",
+              "Idle/animations/breathing-idle/west/frame_002.png",
+              "Idle/animations/breathing-idle/west/frame_003.png"
+            ],
+            "north": [
+              "Idle/animations/breathing-idle/north/frame_000.png",
+              "Idle/animations/breathing-idle/north/frame_001.png",
+              "Idle/animations/breathing-idle/north/frame_002.png",
+              "Idle/animations/breathing-idle/north/frame_003.png"
+            ],
+            "east": [
+              "Idle/animations/breathing-idle/east/frame_000.png",
+              "Idle/animations/breathing-idle/east/frame_001.png",
+              "Idle/animations/breathing-idle/east/frame_002.png",
+              "Idle/animations/breathing-idle/east/frame_003.png"
+            ],
+            "south": [
+              "Idle/animations/breathing-idle/south/frame_000.png",
+              "Idle/animations/breathing-idle/south/frame_001.png",
+              "Idle/animations/breathing-idle/south/frame_002.png",
+              "Idle/animations/breathing-idle/south/frame_003.png"
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "export_version": "3.1",
+  "export_date": "2026-11-14T17:00:15.052079"
+}

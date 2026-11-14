@@ -2,8 +2,9 @@ extends World
 ## Copperfern art benchmark: a small sunny forest clearing built from the benchmark kit.
 ## Same World/DualGrid/GatherNode systems as the slice; only the art and layout differ.
 
-const ART := "res://assets/art/benchmark/copperfern/"
-const TERRAIN := preload("res://assets/art/benchmark/copperfern/forest_terrain_v001.png")
+const ART := "res://assets/art/benchmark/copperfern_v002/"  # PixelLab props (tools/art/copperfern_v002)
+## v002 terrain: PixelLab Wang tiles, palette-corrected (tools/art/copperfern_v002).
+const TERRAIN := preload("res://assets/art/benchmark/copperfern_v002/forest_terrain_v002.png")
 const DECOR := preload("res://assets/art/benchmark/copperfern/forest_decor_v001.png")
 const PROP_SCENE := preload("res://scenes/props/prop.tscn")
 const GATHER_NODE_SCENE := preload("res://scenes/world/forest/gather_node.tscn")
@@ -12,13 +13,13 @@ const DECOR_PERCENT := 18
 const DECOR_TILES := 6
 ## char -> [texture file, foot_row, blocker size, fades when the player is behind it]
 const PROPS := {
-	"T": ["tree_round_v001.png", 94, Vector2(16, 8), true],
-	"b": ["bush_v001.png", 26, Vector2(26, 10), false],
+	"T": ["tree_round_v002.png", 102, Vector2(16, 8), true],
+	"b": ["bush_v002.png", 33, Vector2(28, 10), false],
 }
 ## char -> [item, sprite base name, max yield, foot_row, blocker size]
 const GATHER := {
-	"g": [preload("res://data/items/glowcap.tres"), "glowcap", 2, 24, Vector2.ZERO],
-	"u": [preload("res://data/items/moonberry.tres"), "moonberry", 3, 26, Vector2(26, 10)],
+	"g": [preload("res://data/items/glowcap.tres"), "glowcap", 2, 25, Vector2.ZERO],
+	"u": [preload("res://data/items/moonberry.tres"), "moonberry", 3, 42, Vector2(30, 10)],
 }
 
 @onready var decor: TileMapLayer = $Decor
@@ -54,8 +55,8 @@ func _build() -> void:
 			var node: GatherNode = GATHER_NODE_SCENE.instantiate()
 			node.node_id = StringName("forest:%d,%d" % [cell.x, cell.y])
 			node.item = spec[0]
-			node.full_texture = load(ART + "%s_full_v001.png" % spec[1])
-			node.empty_texture = load(ART + "%s_empty_v001.png" % spec[1])
+			node.full_texture = load(ART + "%s_full_v002.png" % spec[1])
+			node.empty_texture = load(ART + "%s_empty_v002.png" % spec[1])
 			node.max_yield = spec[2]
 			node.foot_row = spec[3]
 			node.blocker_size = spec[4]
