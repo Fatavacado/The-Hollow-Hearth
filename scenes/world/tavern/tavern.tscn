@@ -6,7 +6,7 @@
 [ext_resource type="Script" path="res://scenes/world/door_trigger.gd" id="4_door"]
 [ext_resource type="Script" path="res://scenes/world/spawn_point.gd" id="5_spawn"]
 [ext_resource type="PackedScene" path="res://scenes/world/tavern/pantry.tscn" id="6_pantry"]
-[ext_resource type="Texture2D" path="res://assets/art/props/counter.png" id="7_counter"]
+[ext_resource type="PackedScene" path="res://scenes/world/tavern/counter.tscn" id="7_counter"]
 [ext_resource type="Texture2D" path="res://assets/art/props/table.png" id="8_table"]
 [ext_resource type="Texture2D" path="res://assets/art/props/stool.png" id="9_stool"]
 [ext_resource type="Texture2D" path="res://assets/art/props/barrel.png" id="10_barrel"]
@@ -106,11 +106,8 @@ position = Vector2(80, 128)
 [node name="Pantry" parent="Actors" instance=ExtResource("6_pantry")]
 position = Vector2(184, 126)
 
-[node name="Counter" parent="Actors" instance=ExtResource("2_prop")]
+[node name="Counter" parent="Actors" instance=ExtResource("7_counter")]
 position = Vector2(112, 192)
-texture = ExtResource("7_counter")
-foot_row = 49
-blocker_size = Vector2(160, 22)
 
 [node name="TableA" parent="Actors" instance=ExtResource("2_prop")]
 position = Vector2(360, 216)

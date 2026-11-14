@@ -76,6 +76,34 @@ func _scenario_gathering() -> void:
 	await _shot("m2_07_stored_and_inventory_tavern")
 
 
+func _scenario_cooking() -> void:
+	await get_tree().create_timer(2.5).timeout
+	GameState.pantry.add(&"glowcap", 5)
+	GameState.pantry.add(&"fernleaf", 2)
+	GameState.satchel.add(&"moonberry", 2)
+	GameState.satchel.add(&"sweetroot", 1)
+	var hearth: Node2D = main.current_world.get_node("Actors/Hearth")
+	main.player.global_position = hearth.global_position + Vector2(18, 22)
+	main.player.facing = Vector2.UP
+	await get_tree().create_timer(0.3).timeout
+	main.player.try_interact()
+	await get_tree().create_timer(0.3).timeout
+	await _shot("m3_01_cooking_panel")
+	main.cooking_panel.choose(&"glowcap_soup")
+	await get_tree().create_timer(0.7).timeout
+	await _shot("m3_02_cooking_in_progress")
+	await get_tree().create_timer(1.2).timeout
+	main.cooking_panel.choose(&"moonberry_tart")
+	await get_tree().create_timer(2.0).timeout
+	main.cooking_panel.choose(&"glowcap_soup")
+	await get_tree().create_timer(1.8).timeout
+	await _shot("m3_03_after_cooking_panel")
+	main.cooking_panel.close()
+	main.player.global_position = Vector2(150, 222)
+	await get_tree().create_timer(0.4).timeout
+	await _shot("m3_04_dishes_on_counter")
+
+
 func _gather_node_at(cell: Vector2i) -> GatherNode:
 	var wanted := StringName("forest:%d,%d" % [cell.x, cell.y])
 	for node in main.current_world.find_children("*", "", true, false):

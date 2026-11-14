@@ -16,6 +16,7 @@ var _traveling := false
 var _banner_tween: Tween
 
 @onready var hud: HUD = $HUD
+@onready var cooking_panel: CookingPanel = %CookingPanel
 @onready var _world_slot: Node2D = $WorldSlot
 @onready var _fade: ColorRect = %Fade
 @onready var _banner: Label = %Banner
@@ -23,7 +24,23 @@ var _banner_tween: Tween
 
 func _ready() -> void:
 	GameState.travel_requested.connect(_on_travel_requested)
+	Feedback.panel_requested.connect(_on_panel_requested)
+	cooking_panel.closed.connect(_on_panel_closed)
 	start_new_game()
+
+
+func _on_panel_requested(panel_id: StringName) -> void:
+	if _traveling:
+		return
+	match panel_id:
+		&"cooking":
+			player.input_enabled = false
+			cooking_panel.open()
+
+
+func _on_panel_closed() -> void:
+	if not _traveling:
+		player.input_enabled = true
 
 
 func start_new_game() -> void:

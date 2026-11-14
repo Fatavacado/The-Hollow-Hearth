@@ -1,0 +1,11 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scenes/world/tavern/counter.gd" id="1_counter"]
+[ext_resource type="Texture2D" path="res://assets/art/props/counter.png" id="2_tex"]
+
+[node name="Counter" type="StaticBody2D"]
+collision_mask = 0
+script = ExtResource("1_counter")
+texture = ExtResource("2_tex")
+foot_row = 49
+blocker_size = Vector2(160, 22)

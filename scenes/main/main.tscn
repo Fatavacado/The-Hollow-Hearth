@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" path="res://scenes/main/main.gd" id="1_main"]
 [ext_resource type="PackedScene" path="res://scenes/ui/hud.tscn" id="2_hud"]
+[ext_resource type="PackedScene" path="res://scenes/ui/cooking_panel.tscn" id="3_cooking"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_main")
@@ -9,6 +10,12 @@ script = ExtResource("1_main")
 [node name="WorldSlot" type="Node2D" parent="."]
 
 [node name="HUD" parent="." instance=ExtResource("2_hud")]
+
+[node name="Panels" type="CanvasLayer" parent="."]
+layer = 20
+
+[node name="CookingPanel" parent="Panels" instance=ExtResource("3_cooking")]
+unique_name_in_owner = true
 
 [node name="BannerLayer" type="CanvasLayer" parent="."]
 layer = 40

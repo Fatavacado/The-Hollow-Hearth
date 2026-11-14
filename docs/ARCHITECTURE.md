@@ -29,6 +29,17 @@ Autoloads (in load order)
   (pantry deposit; cooking consumes pantry first, then satchel). Satchel and pantry objects live for
   the whole session — UI binds to them once.
 
+### Cooking
+- `RecipeData` (`data/recipes/`): `ingredients` (typed `Dictionary[StringName, int]`), `output` dish
+  (`ItemData` of kind DISH with a `price`), `cook_seconds`.
+- The hearth's `Interactable` asks `Feedback.open_panel(&"cooking")`; `Main` opens `CookingPanel`
+  and freezes the player until it closes.
+- `CookingPanel` shows have/need per ingredient and only enables recipes that can be cooked. A cook
+  fills over `cook_seconds`; each interact press ("stir") adds 15%. Only on completion does
+  `GameState.cook()` run `Cooking.cook()` — one transaction that validates everything, consumes
+  (pantry first) and puts one dish in `GameState.counter`. Stopping early consumes nothing.
+- The tavern `Counter` renders the dishes waiting in `GameState.counter`.
+
 ### Worlds
 - `World` (`scenes/world/world.gd`) parses `data/maps/<name>.txt` (one char = one 32×32 cell) with
   `MapGrid`, lets the subclass paint terrain, then merges blocked cells into a few collision boxes
@@ -67,10 +78,10 @@ Autoloads (in load order)
 | `scenes/` | `.tscn` + co-located scene scripts (`main/`, `player/`, `props/`, `world/`, later `ui/`) |
 | `scripts/autoload/` | autoload singletons |
 | `scripts/world/` | scene-independent map logic: `MapGrid`, `DualGrid`, `CollisionRects` |
-| `scripts/data/` | Resource class definitions (`ItemData`; recipes, guests, upgrades follow) |
-| `scripts/systems/` | scene-independent rules and models (`Inventory`, `InventoryTransactions`, `Gathering`) |
+| `scripts/data/` | Resource class definitions (`ItemData`, `RecipeData`; guests and upgrades follow) |
+| `scripts/systems/` | scene-independent rules and models (`Inventory`, `InventoryTransactions`, `Gathering`, `Cooking`) |
 | `data/maps/` | ASCII level layouts with a legend header |
-| `data/items/` | `ItemData` definitions |
+| `data/items/`, `data/recipes/` | `ItemData` (ingredients and dishes) and `RecipeData` definitions |
 | `assets/` | art, fonts, audio — every file logged in [ASSET_PROVENANCE.md](ASSET_PROVENANCE.md) |
 | `tests/` | runner, framework, `unit/`, `integration/` |
 | `tools/` | validation script; `tools/art/` placeholder asset generators (`python tools/art/build_all.py`) |
@@ -112,3 +123,6 @@ Reversible choices made where the design docs were silent.
 | Full satchel while gathering | take what fits; the rest stays on the node | no item loss, no prompts | — |
 | Node regrowth | 120 s of play time after a node is emptied; partial nodes keep their remainder | supports repeat trips without a calendar or timers on screen | economy tuning in M4/M5 |
 | Pantry | unlimited, deposit-all only | frees the satchel for the next trip; cooking reads it directly | storage upgrades (post-slice) |
+| Cooking interaction | auto-filling 1.4–2.0 s cook; optional "stir" taps speed it up | tactile and legible without a mandatory minigame (GDD §5) | playtest feedback |
+| When ingredients are consumed | on completion, atomically | cancelling or interruptions can never lose items | — |
+| Dish storage | serving counter (`GameState.counter`), unlimited | cooking before or during service both work | service tuning in M4 |
