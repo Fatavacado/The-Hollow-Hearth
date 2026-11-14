@@ -30,6 +30,12 @@ step() {  # step <name> <log> <command...>
   fi
 }
 
+if [ ! -d "$ROOT/.godot/imported" ]; then
+  # Fresh checkout: the editor loads the project theme before it has imported the theme's font,
+  # which logs load-order errors once. Bootstrap the cache, then require a clean import below.
+  echo "== bootstrap import (fresh checkout)"
+  "$GODOT" --headless --path "$ROOT" --import >"$LOG_DIR/bootstrap_import.log" 2>&1
+fi
 step "import" "$LOG_DIR/import.log" "$GODOT" --headless --path "$ROOT" --import
 step "tests" "$LOG_DIR/tests.log" "$GODOT" --headless --path "$ROOT" res://tests/test_runner.tscn -- "$@"
 grep -E "^(PASS|FAIL|      - |[0-9]+ passed)" "$LOG_DIR/tests.log"
