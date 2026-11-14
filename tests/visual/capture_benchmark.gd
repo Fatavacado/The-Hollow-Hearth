@@ -20,12 +20,26 @@ func _ready() -> void:
 	main = MAIN_SCENE.instantiate()
 	add_child(main)
 	var scenario := _arg("--scenario=", "benchmark")
+	if scenario != "menus":
+		main.start_new_game()  # every other scenario starts in play, past the title
 	if has_method("_scenario_" + scenario):
 		await call("_scenario_" + scenario)
 	else:
 		push_error("unknown scenario " + scenario)
 	print("shots written to ", _out)
 	get_tree().quit()
+
+
+func _scenario_menus() -> void:
+	await get_tree().create_timer(0.6).timeout
+	await _shot("m5_01_title_screen")
+	main.start_new_game()
+	await get_tree().create_timer(2.8).timeout
+	main.pause_menu.open()
+	get_tree().paused = true
+	await _frames(3)
+	await _shot("m5_02_pause_menu")
+	get_tree().paused = false
 
 
 func _scenario_benchmark() -> void:

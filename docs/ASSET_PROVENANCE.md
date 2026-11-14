@@ -18,6 +18,8 @@ Every asset in the repository is listed here **before** it is committed. Columns
 | Item icons (5 ingredients, 3 dishes, coin, satchel) | `assets/art/items/*.png` | `tools/art/gen_items.py` | Original | Project-owned | Yes | placeholder |
 | Gather-node sprites, full + picked (glowcap, moonberry, fernleaf, sweetroot, honeycomb) | `assets/art/nodes/*.png` | `tools/art/gen_items.py` | Original | Project-owned | Yes | placeholder |
 | Guest UI sprites (order bubble, heart and sad emotes) | `assets/art/ui/*.png` | `tools/art/gen_items.py` | Original | Project-owned | Yes | placeholder |
+| Sound effects (pickup, store, stir, cook done, coin, bell, door, ui, buy) and forest/tavern ambience loops | `assets/audio/*.wav` | `tools/art/gen_audio.py` (synthesised) | Original | Project-owned | Yes | placeholder |
+| Gameplay screenshots and agent session report | `docs/screens/*` | Captured from the game | Original | Project-owned | Yes | documentation |
 | Benchmark screenshots | `docs/benchmark/*.png` | Captured from the game by `tests/visual/capture_benchmark.tscn` | Original | Project-owned | Yes | documentation |
 
 ## Generated-asset policy

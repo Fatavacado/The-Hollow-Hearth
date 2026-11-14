@@ -18,9 +18,12 @@
 | Full validation (import → tests → headless boot) | `tools/run_tests.sh` |
 | Run a subset of tests | `tools/run_tests.sh --filter=inventory` |
 | Play the game | `"$GODOT_BIN" --path .` |
-| Capture real rendered frames (native 640×360 PNGs) | `"$GODOT_BIN" --path . --write-movie /tmp/cap/frame.png --fixed-fps 30 --quit-after 90` |
+| Timed agent playthrough (real movement), report in `--out` | `"$GODOT_BIN" --headless --path . res://tests/playtest/full_session.tscn -- --out=/tmp/session --speed=6` |
+| Same, windowed, with milestone screenshots | `"$GODOT_BIN" --path . res://tests/playtest/full_session.tscn -- --out=/tmp/session --speed=2 --shots` |
+| Capture review screenshots (`benchmark`, `gathering`, `cooking`, `service`, `menus`) | `"$GODOT_BIN" --path . res://tests/visual/capture_benchmark.tscn -- --out=/tmp/shots --scenario=service` |
+| Regenerate placeholder art, font and audio | `python tools/art/build_all.py && python tools/art/gen_audio.py` |
 
-`tools/run_tests.sh` exits non-zero if any test fails **or** any engine/script error is logged during import, tests or boot. Logs go to `.godot/test_logs/` (git-ignored).
+`tools/run_tests.sh` exits non-zero if any test fails **or** any engine/script error is logged during import, tests or boot (including resources leaked at exit). Logs go to `.godot/test_logs/` (git-ignored). Tests and agent runs use their own save files, never the player's `user://savegame.json`.
 
 ## Conventions
 - GDScript with static types; `snake_case` files and functions, `PascalCase` `class_name`s.

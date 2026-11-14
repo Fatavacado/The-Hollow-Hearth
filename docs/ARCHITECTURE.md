@@ -8,15 +8,30 @@ code; sections marked *(planned)* do not exist yet.
 Main (scenes/main)                persistent root: swaps world scenes, owns HUD + overlays
 ├── WorldSlot                     one World at a time: Tavern interior or Forest
 │   └── World (scenes/world)      Ground TileMapLayer + Actors (Y-sorted: player, props, guests)
-├── HUD (CanvasLayer)             coins, satchel, prompts, toasts          (planned, M2)
+├── HUD (CanvasLayer 10)          coins, satchel, tavern status, prompt, toasts, inventory panel
+├── Panels (CanvasLayer 20)       CookingPanel, UpgradePanel (player frozen while open)
+├── TitleLayer (30)               TitleScreen: New Game / Continue / Quit over the live tavern
 ├── BannerLayer / FadeLayer       location banner, fade-to-black travel transition
-└── Overlays                      title, panels, pause                     (planned)
+└── PauseLayer (45, always runs)  PauseMenu: Resume / Save Game / Quit to Title
 
 Autoloads (in load order)
 ├── GameDB                        read-only registry of data Resources (explicit preload list)
-├── GameState                     mutable session state: satchel, pantry, gather-node state, play time
-└── Feedback                      UI feedback channel: gameplay reports, HUD presents (toasts)
+├── GameState                     mutable session state: inventories, coins, upgrades, nodes, ledgers
+├── Feedback                      UI channel: toasts, panel requests, cooking state
+├── SaveService                   versioned JSON save file, atomic writes
+└── Audio                         named SFX voice pool + one looping ambience per world
 ```
+
+### Saving, menus and audio
+- `SaveData` (pure) captures `GameState` into a v1 JSON-friendly dictionary and applies one back:
+  the version is checked before anything changes; unknown items, upgrades and worlds are dropped;
+  counts must be positive whole numbers; coins are rebuilt from the earned/spent ledger when they
+  disagree. Guests and the open state are never saved — a loaded game starts closed.
+- `SaveService` writes to `user://savegame.json` via a temp file + replace and recovers an
+  interrupted write. Autosave after every arrival and on Quit to Title; manual save in the pause menu.
+- Launch shows the title over the live tavern (play time does not run). Esc opens the pause menu only
+  when no panel consumed it first (panels are children of `Main`, so they see input earlier).
+- `Audio.play(name)` from presentation scripts only; `Main` sets the ambience on arrival.
 
 ### Interaction and gathering
 - `Interactable` (Area2D on layer 3) carries a `prompt` and `enabled` flag and emits `interacted`.
@@ -99,7 +114,7 @@ Autoloads (in load order)
 | `data/maps/` | ASCII level layouts with a legend header |
 | `data/items/`, `data/recipes/`, `data/guests/`, `data/upgrades/` | definitions (`.tres`) |
 | `assets/` | art, fonts, audio — every file logged in [ASSET_PROVENANCE.md](ASSET_PROVENANCE.md) |
-| `tests/` | runner, framework, `unit/`, `integration/` |
+| `tests/` | runner, framework, `unit/`, `integration/`, `playtest/` (agent + timed session), `visual/` (captures) |
 | `tools/` | validation script; `tools/art/` placeholder asset generators (`python tools/art/build_all.py`) |
 
 ## Rendering and scale (provisional until the M1 benchmark is approved)
@@ -110,12 +125,14 @@ Autoloads (in load order)
 ## Testing strategy
 | Layer | What | Where |
 |---|---|---|
-| Unit | models and rules (inventory, cooking, orders, economy, saves) | `tests/unit/` |
-| Integration | real scenes in the tree: movement, collisions, transitions, interactions, full loop | `tests/integration/` |
+| Unit | models and rules (inventory, cooking, orders, economy, saves, ledgers, audio) | `tests/unit/` |
+| Integration | real scenes driven by input events: movement, collisions, travel, gathering, cooking, service, upgrade, menus, save/continue | `tests/integration/` |
+| Full loop | `PlaytestAgent` plays the whole loop through player inputs (teleporting between targets) and checks the conservation ledgers | `tests/integration/test_full_loop.gd` |
+| Timed session | the same agent walking everywhere (A* over physics-probed cells driving the move actions) | `tests/playtest/full_session.tscn` |
 | Resource validation | every `.tscn`/`.tres` loads, every scene instances | `tests/integration/test_project_resources.gd` |
-| Boot check | real main scene runs 300 frames headless without errors | `tools/run_tests.sh` |
-| Visual check | Movie Maker captures of the real game at native resolution, inspected by eye | see DEVELOPMENT.md |
-| Human playtest | feel, readability, pacing — cannot be automated | milestone reports |
+| Boot check | real main scene runs 300 frames headless without errors or leaks | `tools/run_tests.sh` |
+| Visual check | captures from the real renderer at native resolution, inspected by eye | `tests/visual/capture_benchmark.tscn` |
+| Human playtest | feel, readability, pacing — cannot be automated | [PLAYTEST_REPORT.md](PLAYTEST_REPORT.md) |
 
 The runner (`tests/test_runner.gd`) registers a `Logger`, so any engine or script error raised while a
 test runs fails that test even if no assertion did.
@@ -147,3 +164,7 @@ Reversible choices made where the design docs were silent.
 | Patience | 80–100 s, leave politely, no penalty beyond the missed sale | forgiving pacing (GAMEPLAY_LOOP.md) | playtest feedback |
 | Prices / tip / upgrade | soup 10, tart 14, stew 24; tips 4–6 on favourites; satchel 60 coins (+8) | upgrade affordable after ~4–5 served dishes, i.e. within a 10–15 min session | M5 playtest numbers |
 | Guest variety | alternate archetypes (random first) | with two archetypes, random streaks hid one of them | more archetypes |
+| Save trigger | autosave on arrival and on Quit to Title + manual save | no lost progress without save-slot UI | more save slots |
+| Save format | JSON v1 with `migrate()` hook | human-readable, diff-able, easy to validate | size or tamper concerns |
+| Coins on load | rebuilt from the earned/spent ledger if they disagree | keeps the economy consistent even with a damaged/edited save | — |
+| Audio | synthesised placeholder SFX + ambience, volume constants in `Audio` | basic feedback and ambience per the slice contract, no licensing | audio direction / options menu |
