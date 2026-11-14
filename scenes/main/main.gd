@@ -132,6 +132,7 @@ func _on_travel_requested(world_id: StringName, spawn_id: StringName) -> void:
 	if world_id != &"tavern" and GameState.tavern_open:
 		# Guests only exist while the keeper is home: heading out closes up, no penalty.
 		GameState.set_tavern_open(false)
+	Audio.play(&"door")
 	await _tween_fade(1.0)
 	_enter_world(world_id, spawn_id)
 	await _tween_fade(0.0)
@@ -156,6 +157,7 @@ func _enter_world(world_id: StringName, spawn_id: StringName, show_banner: bool 
 	world.add_actor(player)
 	player.set_camera_limits(world.get_camera_limits())
 	GameState.location = world_id
+	Audio.set_ambience(world_id)
 	if show_banner:
 		_show_banner(world.display_name)
 

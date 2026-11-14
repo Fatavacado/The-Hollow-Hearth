@@ -46,7 +46,9 @@ func refresh_state() -> void:
 func _on_interacted(_player: Player) -> void:
 	var gathered := GameState.gather(node_id, item.id, max_yield, regrow_seconds)
 	if gathered > 0:
+		Audio.play(&"pickup")
 		Feedback.toast("+%d %s" % [gathered, item.display_name], item.icon)
 	elif GameState.satchel.free_space() == 0:
+		Audio.play(&"ui")
 		Feedback.toast("Your satchel is full. Store ingredients in the tavern pantry.")
 	refresh_state()

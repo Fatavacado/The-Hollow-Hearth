@@ -33,6 +33,7 @@ func buy(upgrade_id: StringName) -> bool:
 	var upgrade := GameDB.upgrade(upgrade_id)
 	if not can_buy(upgrade_id) or not GameState.buy_upgrade(upgrade):
 		return false
+	Audio.play(&"buy", 0.0)
 	Feedback.toast("%s bought! Your satchel now holds %d ingredients." % [upgrade.display_name,
 			GameState.satchel.capacity], upgrade.icon)
 	_rebuild()

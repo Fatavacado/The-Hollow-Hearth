@@ -13,6 +13,7 @@ func _ready() -> void:
 func _on_interacted(_player: Player) -> void:
 	var moved := InventoryTransactions.transfer_all(GameState.satchel, GameState.pantry)
 	if moved > 0:
+		Audio.play(&"store")
 		Feedback.toast("Stored %d ingredient%s in the pantry." % [moved, "" if moved == 1 else "s"])
 	else:
 		Feedback.toast("Your satchel is empty.")

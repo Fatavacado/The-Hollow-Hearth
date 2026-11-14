@@ -71,6 +71,7 @@ func choose(recipe_id: StringName) -> bool:
 	_cook_box.show()
 	_footer.text = "[E] Stir to cook faster      [Esc] Stop"
 	Feedback.set_cooking(true)
+	Audio.play(&"ui")
 	return true
 
 
@@ -78,6 +79,7 @@ func stir() -> void:
 	if not _cooking:
 		return
 	_progress += STIR_BOOST
+	Audio.play(&"stir", 0.15)
 	var tween := create_tween()
 	_bar.scale = Vector2(1.0, 1.25)
 	tween.tween_property(_bar, "scale", Vector2.ONE, 0.12)
@@ -116,6 +118,7 @@ func _finish() -> void:
 	var recipe := _recipe
 	_stop()
 	if GameState.cook(recipe):
+		Audio.play(&"cook_done", 0.0)
 		Feedback.toast("Cooked %s! It's on the counter." % recipe.output.display_name, recipe.output.icon)
 	else:
 		Feedback.toast("The ingredients for %s are gone." % recipe.output.display_name)

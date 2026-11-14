@@ -9,7 +9,9 @@ const CLOSED_TEXTURE := preload("res://assets/art/props/sign_closed.png")
 
 func _ready() -> void:
 	super()
-	_use.interacted.connect(func(_player: Player) -> void: GameState.set_tavern_open(not GameState.tavern_open))
+	_use.interacted.connect(func(_player: Player) -> void:
+		Audio.play(&"ui" if GameState.tavern_open else &"bell")
+		GameState.set_tavern_open(not GameState.tavern_open))
 	GameState.tavern_open_changed.connect(_show_state)
 	_show_state(GameState.tavern_open)
 

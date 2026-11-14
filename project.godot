@@ -23,6 +23,7 @@ GameDB="*res://scripts/autoload/game_db.gd"
 GameState="*res://scripts/autoload/game_state.gd"
 Feedback="*res://scripts/autoload/feedback.gd"
 SaveService="*res://scripts/autoload/save_service.gd"
+Audio="*res://scripts/autoload/audio.gd"
 
 [display]
 

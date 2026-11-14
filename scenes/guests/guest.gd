@@ -58,6 +58,7 @@ func _ready() -> void:
 	_emote.hide()
 	_use.enabled = false
 	_use.interacted.connect(_on_interacted)
+	Audio.play(&"bell", 0.1)
 	Feedback.toast(data.arrival_line)
 
 
@@ -135,6 +136,7 @@ func _on_interacted(_player: Player) -> void:
 func _pay_and_leave() -> void:
 	var amount := Orders.payment(data, order.output)
 	GameState.earn(amount)
+	Audio.play(&"coin")
 	GameState.record_served()
 	var line := data.favorite_line if Orders.is_favorite(data, order.output) else data.thanks_line
 	Feedback.toast("+%d coins   %s" % [amount, line], COIN_ICON)
