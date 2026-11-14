@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 32 32" shape-rendering="crispEdges">
+  <!-- The Hollow Hearth: original placeholder icon (stone hearth arch with a flame). -->
+  <rect width="32" height="32" fill="#2b1d16"/>
+  <path d="M5 30V14a11 11 0 0 1 22 0v16z" fill="#7a6a5c"/>
+  <path d="M9 30V15a7 7 0 0 1 14 0v15z" fill="#1a1210"/>
+  <path d="M16 12c3 4 5 7 5 11a5 5 0 0 1-10 0c0-3 2-5 3-8 1 2 2 3 2 5 1-2 1-5 0-8z" fill="#f08a2c"/>
+  <path d="M16 19c2 2 3 3 3 5a3 3 0 0 1-6 0c0-2 1-3 3-5z" fill="#ffd36b"/>
+  <rect x="3" y="28" width="26" height="2" fill="#4f4038"/>
+</svg>

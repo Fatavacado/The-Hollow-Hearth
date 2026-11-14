@@ -10,4 +10,6 @@ The player controls their own schedule. No compulsory daily tavern opening, rigi
 
 Start with [GAME_VISION.md](GAME_VISION.md), [GAME_DESIGN_DOCUMENT.md](GAME_DESIGN_DOCUMENT.md), and [docs/VERTICAL_SLICE.md](docs/VERTICAL_SLICE.md). Development agents must read [CLAUDE.md](CLAUDE.md).
 
-**Status:** Concept and production planning. No playable game is claimed yet. All technical/art dimensions remain provisional until validated in Godot.
+**Status:** Vertical-slice development in Godot 4.7.2 (see milestones in [docs/VERTICAL_SLICE.md](docs/VERTICAL_SLICE.md)). All technical/art dimensions remain provisional until validated in Godot.
+
+**Developers:** setup, engine pin and test commands are in [docs/DEVELOPMENT.md](docs/DEVELOPMENT.md); code structure and decisions in [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md); asset licenses in [docs/ASSET_PROVENANCE.md](docs/ASSET_PROVENANCE.md).

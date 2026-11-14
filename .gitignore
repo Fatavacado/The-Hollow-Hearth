@@ -3,6 +3,9 @@
 .import/
 export.cfg
 export_presets.cfg
+# Tooling caches
+__pycache__/
+*.pyc
 # Local/editor files
 .DS_Store
 Thumbs.db
