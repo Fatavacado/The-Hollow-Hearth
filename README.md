@@ -30,3 +30,7 @@ A session: walk out of the tavern into the Whisperwood, gather ingredients, stor
 ## Developers
 Setup, engine pin and commands: [docs/DEVELOPMENT.md](docs/DEVELOPMENT.md) · code structure and decisions: [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) · asset licenses: [docs/ASSET_PROVENANCE.md](docs/ASSET_PROVENANCE.md).
 Validate everything with `tools/run_tests.sh` (Git Bash, `GODOT_BIN` set to the console binary).
+
+## Codex v2 visual comparison candidate
+
+This branch preserves playable baseline `a8085de` and introduces an independent original Copperfern benchmark. See [actual Godot screenshots, animated previews, reference comparison and test results](docs/CODEX_ART_V2.md). The candidate is pending owner approval and must not be merged or expanded yet. Rebuild these assets with `python tools/art/build_codex_v2.py`; baseline `build_all.py` regenerates placeholders.

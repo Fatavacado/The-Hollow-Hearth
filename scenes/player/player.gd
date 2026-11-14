@@ -1,6 +1,6 @@
 class_name Player
 extends CharacterBody2D
-## Four-direction top-down player. Sprite sheet layout (tools/art/gen_characters.py):
+## Four-direction top-down player. Codex v2 visual sheet (tools/art/codex_v2_player.py):
 ## rows down/left/right/up, columns idle + 4 walk frames.
 
 const SHEET_COLUMNS := 5
@@ -17,6 +17,8 @@ var input_enabled := true
 ## The interactable the player would use right now, or null.
 var target: Interactable
 var _walk_time := 0.0
+## Visual-only breathing phase; does not affect movement, collision or interactions.
+var _idle_time := 0.0
 
 @onready var sprite: Sprite2D = $Sprite
 @onready var camera: Camera2D = $Camera
@@ -84,8 +86,12 @@ func _update_facing(direction: Vector2) -> void:
 func _update_frame(delta: float, moving: bool) -> void:
 	var column := 0
 	if moving:
+		_idle_time = 0.0
 		_walk_time += delta * walk_fps
 		column = 1 + int(_walk_time) % 4
 	else:
 		_walk_time = 0.0
+		_idle_time += delta
+		# Passing pose has a neutral foot stance and one-pixel upper-body breath.
+		column = 2 if int(_idle_time / 0.7) % 2 == 1 else 0
 	sprite.frame = ROW_BY_FACING[facing] * SHEET_COLUMNS + column

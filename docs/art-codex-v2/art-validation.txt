@@ -1,0 +1,11 @@
+PASS: 384 compatible forest-mask edge pairs; all variant boundaries; 16 floor pair seams; exact atlas dimensions and binary alpha
+fernleaf: (32, 30), preserved foot row 27, full/harvested changed pixels 221
+glowcap: (32, 28), preserved foot row 25, full/harvested changed pixels 255
+moonberry: (32, 30), preserved foot row 26, full/harvested changed pixels 96
+sweetroot: (28, 24), preserved foot row 22, full/harvested changed pixels 276
+honeycomb: (48, 32), preserved foot row 27, full/harvested changed pixels 179
+PASS: 12 exact-size outputs, distinct harvested states, nonempty native bounds and binary alpha
+PASS:14 hero props frozen dimensions, exact ground rows, binary alpha
+PASS: 20 registered frames; four unique walking poses per direction; foot baseline row60; binary alpha
+Shared native colors: 35
+PASS: bounded Codex v2 art rebuilt; no game data, scene geometry or settings changed

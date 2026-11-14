@@ -26,3 +26,7 @@ One playable four-direction character, a small detailed forest, and a warm taver
 
 ## Still to decide
 Palette swatches, approved reference image board, exact tile/frame dimensions, character animation schema, UI style and lighting implementation.
+
+## Codex v2 comparison candidate
+
+The pending candidate on `feat/art-codex-v2` uses original Copperfern art and the high top-down reference from main commit `c1600fb`. Frozen gameplay baseline is `a8085de`; viewport640×360, terrain32×32, character48×64, foot row60 and all layouts/camera settings remain unchanged. See [candidate benchmark](CODEX_ART_V2.md). This is a review candidate, not owner approval or permission to expand across the slice.

@@ -28,3 +28,19 @@ Every asset in the repository is listed here **before** it is committed. Columns
 - AI image outputs (GPT or similar) are concept references only until cleaned, validated in Godot and
   approved; log the tool, prompt summary and date.
 - No purchased assets or paid API usage without explicit owner approval.
+
+## Codex v2 — independent Copperfern visual benchmark (pending approval)
+
+Branch `feat/art-codex-v2`, frozen playable baseline `a8085de`, reference main commit `c1600fb`. This candidate is independent of Claude's new artwork. No Pixel Crawler or other asset pack was used, extracted or modified for these runtime assets. Existing baseline scenes, layouts and semantic atlas contracts were retained, not another candidate's artwork.
+
+| Candidate family | Creation / editable source | Runtime outputs |
+|---|---|---|
+| Player directional rig | Available image-generation tool, original Copperfern four-view study retained in `assets/art/source/codex_v2/player_directions.png`; native palette cleanup, arm/leg articulation and asymmetric satchel registration in `tools/art/codex_v2_player.py` | `assets/art/characters/player.png`, 5×4 cells of48×64; four directional idle/walk states |
+| Hero trees, facade and woodland props | Original source study `woodland_props_source.png`; explicit crops, binary-alpha cleanup, material palette reduction, native-size silhouette corrections and original doorway redraw in `tools/art/codex_v2_props.py` | oak_a/oak_b/pine, bush, stump and tavern_exterior PNGs; original baseline canvas and ground rows |
+| Tavern furniture/equipment | Original source study `tavern_props_source.png`; native conversion and cooking overlay socket cleanup in `codex_v2_props.py` | table, stool, barrel, counter, pantry, shelf, hearth, window; separately authored native crate/rug |
+| Terrain and wall atlas | Original deterministic pixel code in `tools/art/codex_v2_terrain.py`, no image inputs | forest_terrain, forest_decor, tavern_tiles; unchanged 32px atlas semantics |
+| Gatherables and small vegetation | Original native silhouettes, material ramps and full/harvested states in `tools/art/codex_v2_gathering.py`, no image inputs | five full/empty ingredient nodes, plant, rock |
+
+Image-generation source IDs: player `exec-3e7ddf0e-c576-4706-82a8-bc1f9697f71a`; woodland `exec-dbfacd67-1bfe-4f55-a9fa-817b1616f5b1`; tavern `exec-35a75493-61b2-4d5f-b21e-e8b5e5a8a0ff`. Original high-resolution source studies are not production sheets. Runtime files are cleaned/native exports; code retains crop coordinates, dimensions, palettes and ground anchors. Tool and source/input service terms remain applicable; generation does not imply exclusive copyright or independent legal clearance. No purchases, subscriptions or paid external sprite API calls were made.
+
+See `assets/art/source/codex_v2/provenance.json` for SHA-256s and modified-output inventory, and `docs/CODEX_ART_V2.md` for actual engine evidence and limitations. These additions supersede the earlier blanket placeholder description only for the listed files. Unchanged guest art, UI, icons, audio and other baseline assets retain their existing records. All new art is a review candidate, not owner-approved production content.

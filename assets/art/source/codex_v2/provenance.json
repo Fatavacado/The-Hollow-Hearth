@@ -1,0 +1,170 @@
+{
+  "candidate": "feat/art-codex-v2",
+  "gameplay_baseline": "a8085de9a969daed1f44f0e3bc6ed88a0c6615a1",
+  "reference_commit": "c1600fb04df167ff0a250a20a7ac3abb4894d9e6",
+  "engine": "4.7.2.stable.official.ed1daf0bf",
+  "viewport": [
+    640,
+    360
+  ],
+  "terrain_cell": [
+    32,
+    32
+  ],
+  "character_cell": [
+    48,
+    64
+  ],
+  "character_foot": [
+    24,
+    60
+  ],
+  "ownership_note": "Original candidate studies and native code; no Claude candidate or third-party asset pack used. Generation service/input terms apply; no exclusive-rights or legal-clearance claim.",
+  "sources": [
+    {
+      "path": "assets/art/source/codex_v2/player_directions.png",
+      "sha256": "5010e1fd27f0263d2a5733ffe632ac1425b698d261d32e60c25f9b4eaefa1ad0",
+      "method": "Available image-generation tool; original Copperfern study retained, converted/registered/palette-cleaned by the adjacent native scripts."
+    },
+    {
+      "path": "assets/art/source/codex_v2/tavern_props_source.png",
+      "sha256": "7a2452eef4de39a6828bec9912ec2967e2fd206f453694418347a3f8e5214929",
+      "method": "Available image-generation tool; original Copperfern study retained, converted/registered/palette-cleaned by the adjacent native scripts."
+    },
+    {
+      "path": "assets/art/source/codex_v2/woodland_props_source.png",
+      "sha256": "cd89ca8edd8cb98e929d4d4bbd9c740b9a5ba1fd3dd68ebaa748c77d67761b9f",
+      "method": "Available image-generation tool; original Copperfern study retained, converted/registered/palette-cleaned by the adjacent native scripts."
+    }
+  ],
+  "modified_runtime_assets": [
+    {
+      "path": "assets/art/characters/player.png",
+      "sha256": "eb9480a0f77f7e91c8fca7ced1f8fff96ca1bd35a92fb43b80417d9824bcdc99"
+    },
+    {
+      "path": "assets/art/nodes/fernleaf_empty.png",
+      "sha256": "69736b847ece70349095e90387d520fdef2921765226ffb0ffe7143c05ec69e7"
+    },
+    {
+      "path": "assets/art/nodes/fernleaf_full.png",
+      "sha256": "61a0397d100954bfdb860b99fcc4f1e01421245f63bfb18ca4d4c81f018531f1"
+    },
+    {
+      "path": "assets/art/nodes/glowcap_empty.png",
+      "sha256": "91d1e0055e6592908fc816f54e65808ba79a721172e9277d219cadb8a9f24949"
+    },
+    {
+      "path": "assets/art/nodes/glowcap_full.png",
+      "sha256": "790e97998e3309f0b2a0a76241069ee4fcee1e05ff9b52ec5dfd236e0f198e81"
+    },
+    {
+      "path": "assets/art/nodes/honeycomb_empty.png",
+      "sha256": "7c5994fd48f5610c683051bcb0a6ebd62b48fa2f1595891d53af665e8055097c"
+    },
+    {
+      "path": "assets/art/nodes/honeycomb_full.png",
+      "sha256": "773c32072661616d7df2feed7201564c691d57c0c75103b8b890e6c6a752e632"
+    },
+    {
+      "path": "assets/art/nodes/moonberry_empty.png",
+      "sha256": "88b6bc9d6aa5851524f5392cf89ad88e4df8c445aee072fba68693a6101a6b64"
+    },
+    {
+      "path": "assets/art/nodes/moonberry_full.png",
+      "sha256": "193c6c9ca1dd3e29a98c85d48f4717865ec82cbea7f5c206d22ad001a92c2733"
+    },
+    {
+      "path": "assets/art/nodes/sweetroot_empty.png",
+      "sha256": "0ae23e909617b1e52a1651d7b435ccb767b26ea1cf041a8e24dd68592706ff5e"
+    },
+    {
+      "path": "assets/art/nodes/sweetroot_full.png",
+      "sha256": "37263d04bd00ee26e9af7eaf3bf1bc6c0981c11b85250c002bc2e647e1f07f3e"
+    },
+    {
+      "path": "assets/art/props/barrel.png",
+      "sha256": "024305fe62d6074aaaee504358f52cdef82aff54814dff212abd3b14f5be7ead"
+    },
+    {
+      "path": "assets/art/props/bush.png",
+      "sha256": "c0efb94c594ef6f2d01dd7fb3cabbb9b7989074441bf15cefeb1028cf558ff47"
+    },
+    {
+      "path": "assets/art/props/counter.png",
+      "sha256": "e2f6c467de3dd92d5ca8560e9c7bc514c41108ffa1420fc7c8a4212dd193f728"
+    },
+    {
+      "path": "assets/art/props/crate.png",
+      "sha256": "e721bba62aa44bb6a8221810060c82651e01d4246ed4b8ab83cf04379d597a82"
+    },
+    {
+      "path": "assets/art/props/hearth.png",
+      "sha256": "c4d8c8b026aad38c6b3d66b750becfc7c111fb0ef9bde8d39c76f48ab53858d5"
+    },
+    {
+      "path": "assets/art/props/oak_tree_a.png",
+      "sha256": "34e4fd5b30674c6fa1c3d5083425287f0b20e3838b4c3b250df225a61ee00d9c"
+    },
+    {
+      "path": "assets/art/props/oak_tree_b.png",
+      "sha256": "2895bb3999d3ab98cc8877fc157edddd86a4119c8b0e1c9cc9649bed6b165d76"
+    },
+    {
+      "path": "assets/art/props/pantry_chest.png",
+      "sha256": "0c284cf94e493cc300811d874eb87e1c806518d3daf6676fd6507c8286ef6a2c"
+    },
+    {
+      "path": "assets/art/props/pine_tree.png",
+      "sha256": "fce3ad5adb1adbb2b990236e08eaf3950c89add983221a0cb32732c583d11ac0"
+    },
+    {
+      "path": "assets/art/props/plant.png",
+      "sha256": "fe0b572d2cdbacbadbf28b1e4793c7c2da915d7d779a3a9641d45476c34997f3"
+    },
+    {
+      "path": "assets/art/props/rock.png",
+      "sha256": "a4fa1c595a6f4ca9b8d272083da1036a2799f0ef86a92f585562d7dfdfc5d2af"
+    },
+    {
+      "path": "assets/art/props/rug.png",
+      "sha256": "130d4e09de101ac99bdcca220f3c9bd70b116e872a3f3642da76de56b83a328f"
+    },
+    {
+      "path": "assets/art/props/shelf.png",
+      "sha256": "e09d52a92d0d60a0fa613969dae4bde64531a04341982160fc5125edc3fb28e5"
+    },
+    {
+      "path": "assets/art/props/stool.png",
+      "sha256": "313136b539df971b6ea787e58eb4979a846e67de8f9443c8d14385f8a759c494"
+    },
+    {
+      "path": "assets/art/props/stump.png",
+      "sha256": "62e7482925f528e57f096627e0f0cdc4c5f49cee4510f3c1368f0b14c36ae064"
+    },
+    {
+      "path": "assets/art/props/table.png",
+      "sha256": "fe834ac5288bb92fa30c4ae5b99ea7442efcdf95437f66ad0fa07bfe3d0de50a"
+    },
+    {
+      "path": "assets/art/props/tavern_exterior.png",
+      "sha256": "8d39fa41d0b619d4d91d1a71b4324662bfed0a9d40b5f7cb6c4f5d8f7756377d"
+    },
+    {
+      "path": "assets/art/props/window.png",
+      "sha256": "4afb56a2d7d0e16f3b56acb92dea1b77a9795982d76187bef5eb5f1d72ef1549"
+    },
+    {
+      "path": "assets/art/tiles/forest_decor.png",
+      "sha256": "772194bf7b5b189419d2857fde5491f3787bac3ffa17ee2996ce0a9c09fdfa2d"
+    },
+    {
+      "path": "assets/art/tiles/forest_terrain.png",
+      "sha256": "e22fbe5073988cc022c97ac52aca2adf9096b8bac5310bee499e66a425532b04"
+    },
+    {
+      "path": "assets/art/tiles/tavern_tiles.png",
+      "sha256": "c440755fb38e0b95884bf8ea79e4ccf9cdfc58fdc1db01c9eb11abe78d168476"
+    }
+  ]
+}
