@@ -30,3 +30,7 @@ A session: walk out of the tavern into the Whisperwood, gather ingredients, stor
 ## Developers
 Setup, engine pin and commands: [docs/DEVELOPMENT.md](docs/DEVELOPMENT.md) · code structure and decisions: [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) · asset licenses: [docs/ASSET_PROVENANCE.md](docs/ASSET_PROVENANCE.md).
 Validate everything with `tools/run_tests.sh` (Git Bash, `GODOT_BIN` set to the console binary).
+
+## Art reference for developers
+
+Use [the approved Copperfern top-down reference](docs/ART_REFERENCE.md) and the [pixel-art production skill](.agents/skills/hollow-hearth-pixel-art/SKILL.md). The selected brighter image defines the high top-down camera, cheerful starting-region palette and visual direction; it is not an implemented game screenshot or production tileset.
