@@ -69,6 +69,28 @@ func test_walk_frames_use_facing_row_and_idle_frame_when_stopped() -> void:
 	assert_eq(player.sprite.frame, 5, "idle column of the left row when stopped")
 
 
+func test_sheet_with_two_idle_and_six_walk_frames_uses_its_own_columns() -> void:
+	player.idle_frames = 2
+	player.walk_frames = 6
+	player.sprite.hframes = 8
+	Input.action_press(&"move_left")
+	var walk_columns := {}
+	for i in 40:
+		await wait_physics_frames(1)
+		walk_columns[player.sprite.frame % 8] = true
+		assert_eq(player.sprite.frame / 8, 1, "left row of an 8-column sheet")
+	Input.action_release(&"move_left")
+	for column: int in walk_columns:
+		assert_true(column >= 2, "walk column %d must skip the idle columns" % column)
+	assert_true(walk_columns.size() >= 4, "walk cycles through its frames: %s" % [walk_columns.keys()])
+	var idle_columns := {}
+	for i in 90:
+		await wait_physics_frames(1)
+		idle_columns[player.sprite.frame % 8] = true
+	assert_eq(idle_columns.keys().filter(func(c: int) -> bool: return c > 1), [], "idle stays in columns 0-1")
+	assert_eq(idle_columns.size(), 2, "both idle frames are shown")
+
+
 func test_walls_block_movement() -> void:
 	var wall := StaticBody2D.new()
 	var shape := CollisionShape2D.new()

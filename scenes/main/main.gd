@@ -3,7 +3,11 @@ extends Node
 ## Game root: owns the current world, the player, menus and the transitions between worlds.
 ## Launch shows the title over the live tavern; arriving anywhere autosaves.
 
-const WORLD_SCENES := {
+## Emitted after a fresh game has been set up and play begins (not when continuing a save).
+signal new_game_started
+
+## World scenes by id. A variable so an alternate entry scene (the art benchmark) can swap them.
+var world_scenes := {
 	&"tavern": preload("res://scenes/world/tavern/tavern.tscn"),
 	&"forest": preload("res://scenes/world/forest/forest.tscn"),
 }
@@ -55,6 +59,7 @@ func start_new_game() -> void:
 	GameState.new_game()
 	_enter_world(&"tavern", &"start")
 	_begin_play()
+	new_game_started.emit()
 
 
 ## Loads the save; on failure reports why and stays where it is.
@@ -125,7 +130,7 @@ func _on_panel_closed() -> void:
 
 
 func _on_travel_requested(world_id: StringName, spawn_id: StringName) -> void:
-	if _traveling or not WORLD_SCENES.has(world_id):
+	if _traveling or not world_scenes.has(world_id):
 		return
 	_traveling = true
 	player.input_enabled = false
@@ -150,7 +155,7 @@ func _enter_world(world_id: StringName, spawn_id: StringName, show_banner: bool 
 	if current_world != null:
 		_world_slot.remove_child(current_world)
 		current_world.queue_free()
-	var world: World = WORLD_SCENES[world_id].instantiate()
+	var world: World = world_scenes[world_id].instantiate()
 	_world_slot.add_child(world)
 	current_world = world
 	player.position = world.get_spawn_position(spawn_id)

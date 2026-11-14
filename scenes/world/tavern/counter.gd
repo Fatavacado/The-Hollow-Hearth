@@ -2,8 +2,8 @@ extends Prop
 ## Serving counter: shows the cooked dishes waiting to be served (up to one per slot).
 
 ## Icon top-left positions on the counter top, relative to the counter's base.
-const SLOTS := [Vector2(-68, -45), Vector2(-48, -45), Vector2(-28, -45), Vector2(-8, -45),
-		Vector2(12, -45), Vector2(32, -45), Vector2(52, -45)]
+@export var slots: PackedVector2Array = PackedVector2Array([Vector2(-68, -45), Vector2(-48, -45),
+		Vector2(-28, -45), Vector2(-8, -45), Vector2(12, -45), Vector2(32, -45), Vector2(52, -45)])
 
 var _dish_sprites: Array[Sprite2D] = []
 
@@ -27,11 +27,11 @@ func _refresh_dishes() -> void:
 	ids.sort()
 	for id: StringName in ids:
 		for i in contents[id]:
-			if _dish_sprites.size() >= SLOTS.size():
+			if _dish_sprites.size() >= slots.size():
 				return
 			var dish := Sprite2D.new()
 			dish.texture = GameDB.item(id).icon
 			dish.centered = false
-			dish.position = SLOTS[_dish_sprites.size()]
+			dish.position = slots[_dish_sprites.size()]
 			add_child(dish)
 			_dish_sprites.append(dish)

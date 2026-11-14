@@ -1,9 +1,8 @@
 class_name Player
 extends CharacterBody2D
-## Four-direction top-down player. Sprite sheet layout (tools/art/gen_characters.py):
-## rows down/left/right/up, columns idle + 4 walk frames.
+## Four-direction top-down player. Sprite sheet layout: rows down/left/right/up; each row holds
+## `idle_frames` idle columns followed by `walk_frames` walk columns (default sheet: 1 + 4).
 
-const SHEET_COLUMNS := 5
 const ROW_BY_FACING := {Vector2.DOWN: 0, Vector2.LEFT: 1, Vector2.RIGHT: 2, Vector2.UP: 3}
 
 ## How far ahead of the feet (in the facing direction) the interaction sensor sits.
@@ -11,12 +10,16 @@ const REACH := 14.0
 
 @export var speed := 110.0
 @export var walk_fps := 9.0
+@export var idle_frames := 1
+@export var walk_frames := 4
+@export var idle_fps := 2.0
 
 var facing := Vector2.DOWN
 var input_enabled := true
 ## The interactable the player would use right now, or null.
 var target: Interactable
 var _walk_time := 0.0
+var _idle_time := 0.0
 
 @onready var sprite: Sprite2D = $Sprite
 @onready var camera: Camera2D = $Camera
@@ -84,8 +87,11 @@ func _update_facing(direction: Vector2) -> void:
 func _update_frame(delta: float, moving: bool) -> void:
 	var column := 0
 	if moving:
+		_idle_time = 0.0
 		_walk_time += delta * walk_fps
-		column = 1 + int(_walk_time) % 4
+		column = idle_frames + int(_walk_time) % walk_frames
 	else:
 		_walk_time = 0.0
-	sprite.frame = ROW_BY_FACING[facing] * SHEET_COLUMNS + column
+		_idle_time += delta * idle_fps
+		column = int(_idle_time) % idle_frames
+	sprite.frame = ROW_BY_FACING[facing] * (idle_frames + walk_frames) + column
