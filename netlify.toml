@@ -1,0 +1,3 @@
+[build]
+  publish = "previews/pixel-crawler"
+  command = ""

@@ -1,11 +1,15 @@
-# Pixel Crawler playable experiment
+# Pixel Crawler playable downloads
 
-These are compiled Godot game downloads for the independent Wayside Inn experiment. The Hollow Hearth source and main branch are unchanged.
+## Deploy on Netlify
 
-Download Wayside-Inn-Browser.zip, extract it, and open Play-Wayside-Inn.html in Chrome or Edge. If local loading is blocked, run `python3 start_game.py` (Windows: `py start_game.py`) in the extracted folder. Keep the terminal open while playing.
+Download **Wayside-Inn-Netlify.zip**. Extract it and upload the extracted folder to Netlify Drop. The folder must directly contain `index.html`, `index.js`, `index.wasm`, and `index.pck`. Do not upload the old Browser ZIP for a website; its entry filename was intended for local play.
 
-Wayside-Inn-Website.zip contains the standard Godot HTML/WASM export for HTTP/static website hosting. Opening its index.html directly from disk may be blocked.
+If connecting this GitHub repository to Netlify instead, select branch `pixel-crawler-playtest-download`, leave the build command empty, and set publish directory to `previews/pixel-crawler`. The netlify.toml on this branch supplies the publish directory. Deploy the latest commit. Never use the repository root or the ZIP-only downloads directory as the publish directory.
 
-Enter starts; WASD/arrows move; E interacts; Escape pauses. Gather three mushrooms in the forest, enter the tavern, cook, and serve the guest.
+## Local play
 
-Art: Pixel Crawler Free Pack by Anokolisa. Original terms and Godot license notices are included. These are functional game builds, not the raw asset pack or editable source project.
+Download Wayside-Inn-Browser.zip, extract, and open Play-Wayside-Inn.html in Chrome or Edge. If local loading is blocked, run `python3 start_game.py` (Windows: `py start_game.py`).
+
+Enter starts; WASD/arrows move; E interacts; Escape pauses. Gather three mushrooms, enter the tavern, cook, and serve the guest.
+
+These are compiled builds of the independent Godot experiment. The main branch and The Hollow Hearth game code are unchanged. Art: Pixel Crawler Free Pack by Anokolisa; original terms and Godot notices are included. No standalone raw asset pack or editable art project is supplied.

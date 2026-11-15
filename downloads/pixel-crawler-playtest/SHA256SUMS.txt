@@ -1,2 +1,3 @@
-93623fb06bef4da7b980f41609b11377112c75f0105808cd09328fe1be4d39ee  Wayside-Inn-Website.zip
 730b7c551f7c86139d54e115b64ec61c1562abc8a9b91750e126a07557ad3f6a  Wayside-Inn-Browser.zip
+338091bce9da0cb59fe5728fb09e596ddebfb556ca4b30140484feda98b9cf18  Wayside-Inn-Netlify.zip
+93623fb06bef4da7b980f41609b11377112c75f0105808cd09328fe1be4d39ee  Wayside-Inn-Website.zip
